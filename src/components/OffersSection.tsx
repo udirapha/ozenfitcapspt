@@ -31,7 +31,7 @@ const OffersSection = () => {
       label: "",
       title: "TRATAMENTO 1 MÊS",
       subtitle: "Para experimentar LEVE 1!",
-      image: productBottle,
+      image: offer1,
       price: "€39,90",
       priceNote: "",
       originalPrice: "€59,90",
