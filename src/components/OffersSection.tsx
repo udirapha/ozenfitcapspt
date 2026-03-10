@@ -20,7 +20,7 @@ const OffersSection = () => {
       label: "",
       title: "TRATAMENTO 3 MESES",
       subtitle: "PAGUE 2 E LEVE 3! + E-book",
-      image: productBundle,
+      image: offer3,
       price: "€59,90",
       priceNote: "ou 3x de €19,97",
       originalPrice: "€119,70",
