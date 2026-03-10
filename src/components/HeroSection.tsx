@@ -1,6 +1,7 @@
 import { Flame, Utensils, Zap, ShieldCheck } from "lucide-react";
 import { useEffect, useRef } from "react";
 import productBottle from "@/assets/product-bottle.png";
+import logo from "@/assets/logo-ozenfit.png";
 
 const HeroSection = () => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -37,6 +38,13 @@ const HeroSection = () => {
       {/* Hero */}
       <section className="bg-background py-8 md:py-16 px-4">
         <div className="container max-w-4xl mx-auto text-center">
+          <div className="flex justify-center mb-6">
+            <img
+              src={logo}
+              alt="OzenFit Caps"
+              className="w-48 md:w-72 h-auto"
+            />
+          </div>
           <h1 className="font-heading text-3xl md:text-5xl font-black text-foreground leading-tight mb-4">
             O PODER DO OZEMPIC <span className="text-primary">EM CÁPSULAS.</span>
           </h1>
