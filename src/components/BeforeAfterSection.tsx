@@ -1,26 +1,11 @@
-import { TrendingDown } from "lucide-react";
+import result1 from "@/assets/result-1.jpeg";
+import result2 from "@/assets/result-2.jpeg";
+import result3 from "@/assets/result-3.jpeg";
+import result4 from "@/assets/result-4.jpeg";
+import result5 from "@/assets/result-5.jpeg";
 
 const BeforeAfterSection = () => {
-  const results = [
-    {
-      name: "Maria L.",
-      age: 42,
-      lost: "14kg em 3 meses",
-      quote: "Nunca pensei que fosse possível perder tanto peso sem passar fome. O OzenFit mudou a minha vida!",
-    },
-    {
-      name: "João P.",
-      age: 38,
-      lost: "11kg em 2 meses",
-      quote: "Já tinha tentado de tudo. Com o OzenFit Caps finalmente vi resultados reais na balança.",
-    },
-    {
-      name: "Carla S.",
-      age: 35,
-      lost: "9kg em 5 semanas",
-      quote: "A minha barriga diminuiu logo nas primeiras semanas. Sinto-me outra pessoa!",
-    },
-  ];
+  const results = [result1, result2, result3, result4, result5];
 
   return (
     <section className="section-alt py-12 md:py-16 px-4">
@@ -32,24 +17,23 @@ const BeforeAfterSection = () => {
           Resultados podem variar de pessoa para pessoa.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {results.map((r, i) => (
-            <div key={i} className="testimonial-card text-center">
-              <div className="w-16 h-16 rounded-full bg-primary mx-auto mb-4 flex items-center justify-center">
-                <TrendingDown className="w-8 h-8 text-primary-foreground" />
-              </div>
-              <p className="font-heading font-black text-primary text-lg mb-1">{r.lost}</p>
-              <p className="font-heading font-bold text-foreground text-sm mb-1">
-                {r.name}, {r.age} anos
-              </p>
-              <p className="text-xs text-primary font-semibold mb-3">Resultado verificado ✓</p>
-              <p className="text-sm text-muted-foreground leading-relaxed italic">"{r.quote}"</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          {results.map((img, i) => (
+            <div key={i} className="rounded-xl overflow-hidden shadow-lg">
+              <img
+                src={img}
+                alt={`Resultado OzenFit Caps ${i + 1}`}
+                className="w-full h-auto"
+                loading="lazy"
+              />
             </div>
           ))}
         </div>
 
         <div className="text-center mt-10">
-          <a href="#preco" className="btn-cta pulse-animation">QUERO OS MESMOS RESULTADOS! 🔥</a>
+          <a href="#preco" className="btn-cta pulse-animation">
+            QUERO OS MESMOS RESULTADOS! 🔥
+          </a>
         </div>
       </div>
     </section>
