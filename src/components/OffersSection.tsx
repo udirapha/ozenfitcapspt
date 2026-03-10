@@ -41,6 +41,12 @@ const OffersSection = () => {
   return (
     <section id="preco" className="bg-background py-12 md:py-16 px-4">
       <div className="container max-w-4xl mx-auto">
+        <div className="flex items-center justify-center gap-2 mb-4">
+          <span className="text-lg">🔒</span>
+          <span className="font-heading font-bold text-sm md:text-base text-primary uppercase tracking-wide">
+            Compra 100% Segura com Pagamento na Entrega!
+          </span>
+        </div>
         <h2 className="font-heading text-2xl md:text-3xl font-bold text-center text-foreground mb-2">
           Escolha o <span className="text-primary">MELHOR TRATAMENTO</span> para si!
         </h2>
