@@ -1,4 +1,5 @@
 import HeroSection from "@/components/HeroSection";
+import VSLSection from "@/components/VSLSection";
 import BenefitsSection from "@/components/BenefitsSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import IngredientsSection from "@/components/IngredientsSection";
