@@ -90,9 +90,9 @@ const HeroSection = () => {
 
           <div className="flex justify-center mb-8">
             <img
-              src={productBottle}
+              src={productBundle}
               alt="OzenFit Caps - Suplemento para emagrecimento"
-              className="w-48 md:w-64 float-animation"
+              className="w-56 md:w-80 float-animation"
             />
           </div>
 
