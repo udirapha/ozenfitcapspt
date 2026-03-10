@@ -1,11 +1,11 @@
+import result1 from "@/assets/result-1.jpeg";
+import result2 from "@/assets/result-2.jpeg";
+import result3 from "@/assets/result-3.jpeg";
+import result4 from "@/assets/result-4.jpeg";
+import result5 from "@/assets/result-5.jpeg";
+
 const BeforeAfterSection = () => {
-  const results = [
-    "/images/result-1.jpeg",
-    "/images/result-2.jpeg",
-    "/images/result-3.jpeg",
-    "/images/result-4.jpeg",
-    "/images/result-5.jpeg",
-  ];
+  const results = [result1, result2, result3, result4, result5];
 
   return (
     <section className="section-alt py-12 md:py-16 px-4">
