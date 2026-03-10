@@ -85,6 +85,9 @@ const HeroSection = () => {
               <a href="#preco" className="btn-cta pulse-animation text-base md:text-lg">
                 QUERO EXPERIMENTAR AGORA! 🔥
               </a>
+              <p className="mt-3 text-sm font-semibold text-muted-foreground flex items-center justify-center gap-1.5">
+                💰 Só paga quando receber na sua porta!
+              </p>
             </div>
           </div>
 
