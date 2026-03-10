@@ -1,13 +1,25 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 const VSLSection = () => {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
   useEffect(() => {
     const s = document.createElement("script");
     s.src = "https://scripts.converteai.net/lib/js/smartplayer-wc/v4/sdk.js";
     s.async = true;
     document.head.appendChild(s);
+
+    // Set iframe src after mount
+    if (iframeRef.current) {
+      iframeRef.current.src =
+        "https://scripts.converteai.net/e10f2ed1-387e-42b5-add3-183c76638cc5/players/69b02f89820829989cca9ec9/v4/embed.html" +
+        (location.search || "?") +
+        "&vl=" +
+        encodeURIComponent(location.href);
+    }
+
     return () => {
-      document.head.removeChild(s);
+      try { document.head.removeChild(s); } catch {}
     };
   }, []);
 
@@ -24,6 +36,7 @@ const VSLSection = () => {
               id="ifr_69b02f89820829989cca9ec9_aspect"
             >
               <iframe
+                ref={iframeRef}
                 frameBorder="0"
                 allowFullScreen
                 src="about:blank"
@@ -36,15 +49,6 @@ const VSLSection = () => {
                   height: "100%",
                 }}
                 referrerPolicy="origin"
-                onLoad={(e) => {
-                  const iframe = e.currentTarget;
-                  iframe.onload = null;
-                  iframe.src =
-                    "https://scripts.converteai.net/e10f2ed1-387e-42b5-add3-183c76638cc5/players/69b02f89820829989cca9ec9/v4/embed.html" +
-                    (location.search || "?") +
-                    "&vl=" +
-                    encodeURIComponent(location.href);
-                }}
               />
             </div>
           </div>
