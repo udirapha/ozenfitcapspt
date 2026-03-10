@@ -34,6 +34,7 @@ const BeforeAfterSection = () => {
           <a href="#preco" className="btn-cta pulse-animation">
             QUERO OS MESMOS RESULTADOS! 🔥
           </a>
+          <p className="mt-3 text-sm font-semibold text-muted-foreground">💰 Pagamento apenas na entrega!</p>
         </div>
       </div>
     </section>

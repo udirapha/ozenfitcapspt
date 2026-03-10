@@ -70,6 +70,7 @@ const OffersSection = () => {
                 <a href="#formulario" className="btn-cta w-full text-center text-sm py-3">
                   ENCOMENDAR AGORA
                 </a>
+                <p className="text-xs text-center text-primary font-bold mt-2">💰 Pague só na entrega!</p>
                 <p className="text-xs text-center text-muted-foreground mt-3">{o.shipping}</p>
               </div>
             </div>
