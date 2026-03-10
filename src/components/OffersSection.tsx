@@ -1,5 +1,6 @@
-import productBottle from "@/assets/product-bottle.png";
-import productBundle from "@/assets/product-bundle.png";
+import offer1 from "@/assets/offer-1-bottle.png";
+import offer3 from "@/assets/offer-3-bottles.png";
+import offer5 from "@/assets/offer-5-bottles.png";
 
 const OffersSection = () => {
   const offers = [
