@@ -1,5 +1,6 @@
-import productBottle from "@/assets/product-bottle.png";
-import productBundle from "@/assets/product-bundle.png";
+import offer1 from "@/assets/offer-1-bottle.png";
+import offer3 from "@/assets/offer-3-bottles.png";
+import offer5 from "@/assets/offer-5-bottles.png";
 
 const OffersSection = () => {
   const offers = [
@@ -8,7 +9,7 @@ const OffersSection = () => {
       label: "O MAIS VENDIDO",
       title: "TRATAMENTO 5 MESES",
       subtitle: "PAGUE 3 E LEVE 5! + E-book",
-      image: productBundle,
+      image: offer5,
       price: "€79,90",
       priceNote: "ou 3x de €26,63",
       originalPrice: "€199,50",
@@ -19,7 +20,7 @@ const OffersSection = () => {
       label: "",
       title: "TRATAMENTO 3 MESES",
       subtitle: "PAGUE 2 E LEVE 3! + E-book",
-      image: productBundle,
+      image: offer3,
       price: "€59,90",
       priceNote: "ou 3x de €19,97",
       originalPrice: "€119,70",
@@ -30,7 +31,7 @@ const OffersSection = () => {
       label: "",
       title: "TRATAMENTO 1 MÊS",
       subtitle: "Para experimentar LEVE 1!",
-      image: productBottle,
+      image: offer1,
       price: "€39,90",
       priceNote: "",
       originalPrice: "€59,90",
