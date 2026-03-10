@@ -9,7 +9,7 @@ const OffersSection = () => {
       label: "O MAIS VENDIDO",
       title: "TRATAMENTO 5 MESES",
       subtitle: "PAGUE 3 E LEVE 5! + E-book",
-      image: productBundle,
+      image: offer5,
       price: "€79,90",
       priceNote: "ou 3x de €26,63",
       originalPrice: "€199,50",
