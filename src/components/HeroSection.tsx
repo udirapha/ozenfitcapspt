@@ -1,6 +1,7 @@
 import { Flame, Utensils, Zap, ShieldCheck } from "lucide-react";
 import { useEffect, useRef } from "react";
 import productBottle from "@/assets/product-bottle.png";
+import logo from "@/assets/logo-ozenfit.png";
 
 const HeroSection = () => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
