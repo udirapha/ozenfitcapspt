@@ -36,7 +36,6 @@ const BeforeAfterSection = () => {
           </a>
           <p className="mt-3 text-sm font-semibold text-muted-foreground">💰 Pagamento apenas na entrega!</p>
         </div>
-        </div>
       </div>
     </section>
   );
