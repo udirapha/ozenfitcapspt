@@ -19,6 +19,7 @@ const GuaranteeSection = () => {
           Sem riscos, apenas resultados eficazes.
         </p>
         <a href="#preco" className="btn-cta">QUERO EXPERIMENTAR</a>
+        <p className="mt-3 text-sm font-semibold text-muted-foreground">💰 Pagamento apenas na entrega!</p>
       </div>
     </section>
   );
