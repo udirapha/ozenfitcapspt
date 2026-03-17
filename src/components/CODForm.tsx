@@ -1,5 +1,12 @@
 import { useState } from "react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+
+const PACKAGES = [
+  { value: "5meses", label: "⭐ 5 Meses — €100,00 (Portes grátis)", price: "100,00" },
+  { value: "3meses", label: "3 Meses — €75,00 (Portes grátis)", price: "75,00" },
+  { value: "1mes", label: "1 Mês — €34,00 (+ €4,99 portes)", price: "34,00" },
+];
 
 const CODForm = () => {
   const [formData, setFormData] = useState({
@@ -10,10 +17,45 @@ const CODForm = () => {
     postalCode: "",
     package: "5meses",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Encomenda recebida com sucesso! Entraremos em contacto em breve.");
+    setIsSubmitting(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke("create-cod-order", {
+        body: formData,
+      });
+
+      if (error) {
+        console.error("Error submitting order:", error);
+        toast.error("Erro ao processar encomenda. Tente novamente.");
+        return;
+      }
+
+      if (data?.error) {
+        toast.error(data.error);
+        return;
+      }
+
+      toast.success(
+        `Encomenda #${data.orderNumber} recebida com sucesso! Entraremos em contacto em breve.`
+      );
+      setFormData({
+        name: "",
+        phone: "",
+        address: "",
+        city: "",
+        postalCode: "",
+        package: "5meses",
+      });
+    } catch (err) {
+      console.error("Unexpected error:", err);
+      toast.error("Erro inesperado. Tente novamente.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -39,10 +81,13 @@ const CODForm = () => {
               type="text"
               name="name"
               required
+              minLength={2}
+              maxLength={100}
               value={formData.name}
               onChange={handleChange}
               placeholder="O seu nome completo"
               className="w-full px-4 py-3 rounded-lg bg-background text-foreground text-sm border border-border focus:ring-2 focus:ring-primary focus:outline-none"
+              disabled={isSubmitting}
             />
           </div>
 
@@ -54,10 +99,13 @@ const CODForm = () => {
               type="tel"
               name="phone"
               required
+              minLength={9}
+              maxLength={20}
               value={formData.phone}
               onChange={handleChange}
               placeholder="+351 9XX XXX XXX"
               className="w-full px-4 py-3 rounded-lg bg-background text-foreground text-sm border border-border focus:ring-2 focus:ring-primary focus:outline-none"
+              disabled={isSubmitting}
             />
           </div>
 
@@ -69,10 +117,13 @@ const CODForm = () => {
               type="text"
               name="address"
               required
+              minLength={5}
+              maxLength={200}
               value={formData.address}
               onChange={handleChange}
               placeholder="Rua, número, andar"
               className="w-full px-4 py-3 rounded-lg bg-background text-foreground text-sm border border-border focus:ring-2 focus:ring-primary focus:outline-none"
+              disabled={isSubmitting}
             />
           </div>
 
@@ -85,10 +136,13 @@ const CODForm = () => {
                 type="text"
                 name="city"
                 required
+                minLength={2}
+                maxLength={100}
                 value={formData.city}
                 onChange={handleChange}
                 placeholder="Lisboa"
                 className="w-full px-4 py-3 rounded-lg bg-background text-foreground text-sm border border-border focus:ring-2 focus:ring-primary focus:outline-none"
+                disabled={isSubmitting}
               />
             </div>
             <div>
@@ -99,10 +153,13 @@ const CODForm = () => {
                 type="text"
                 name="postalCode"
                 required
+                minLength={4}
+                maxLength={10}
                 value={formData.postalCode}
                 onChange={handleChange}
                 placeholder="XXXX-XXX"
                 className="w-full px-4 py-3 rounded-lg bg-background text-foreground text-sm border border-border focus:ring-2 focus:ring-primary focus:outline-none"
+                disabled={isSubmitting}
               />
             </div>
           </div>
@@ -116,15 +173,22 @@ const CODForm = () => {
               value={formData.package}
               onChange={handleChange}
               className="w-full px-4 py-3 rounded-lg bg-background text-foreground text-sm border border-border focus:ring-2 focus:ring-primary focus:outline-none"
+              disabled={isSubmitting}
             >
-              <option value="5meses">⭐ 5 Meses — €79,90 (Portes grátis)</option>
-              <option value="3meses">3 Meses — €59,90 (Portes grátis)</option>
-              <option value="1mes">1 Mês — €39,90 (+ €4,99 portes)</option>
+              {PACKAGES.map((pkg) => (
+                <option key={pkg.value} value={pkg.value}>
+                  {pkg.label}
+                </option>
+              ))}
             </select>
           </div>
 
-          <button type="submit" className="btn-cta w-full text-center pulse-animation">
-            CONFIRMAR ENCOMENDA 📦
+          <button
+            type="submit"
+            className="btn-cta w-full text-center pulse-animation disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "A PROCESSAR..." : "CONFIRMAR ENCOMENDA 📦"}
           </button>
 
           <p className="text-center text-xs" style={{ color: "hsl(var(--section-dark-foreground) / 0.5)" }}>
