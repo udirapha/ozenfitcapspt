@@ -4,18 +4,18 @@ const BenefitsSection = () => {
   const benefits = [
     {
       icon: Apple,
-      title: "Sem parar de comer o que gosta.",
-      desc: "Com a nossa fórmula americana única, pode emagrecer muito mais rápido com saúde e qualidade de vida!",
+      title: "Senza smettere di mangiare ciò che ami.",
+      desc: "Con la nostra formula americana unica, puoi dimagrire molto più velocemente con salute e qualità della vita!",
     },
     {
       icon: Dumbbell,
-      title: "Não precisa de exercícios intensos",
-      desc: "A fórmula atua no metabolismo, promovendo queima de gordura mesmo sem atividade física constante.",
+      title: "Non servono esercizi intensi",
+      desc: "La formula agisce sul metabolismo, promuovendo la combustione dei grassi anche senza attività fisica costante.",
     },
     {
       icon: ThumbsUp,
-      title: "Resultados satisfatórios",
-      desc: "Milhares de portugueses já comprovaram a eficácia do OzenFit Caps no emagrecimento saudável.",
+      title: "Risultati soddisfacenti",
+      desc: "Migliaia di italiani hanno già comprovato l'efficacia di OzenFit Caps nel dimagrimento sano.",
     },
   ];
 
@@ -23,7 +23,7 @@ const BenefitsSection = () => {
     <section className="section-alt py-12 md:py-16 px-4">
       <div className="container max-w-4xl mx-auto">
         <h2 className="font-heading text-2xl md:text-3xl font-bold text-center text-foreground mb-10">
-          Com a nossa <span className="text-primary">fórmula americana ÚNICA</span>, pode emagrecer muito mais rápido!
+          Con la nostra <span className="text-primary">formula americana UNICA</span>, puoi dimagrire molto più velocemente!
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
@@ -39,8 +39,8 @@ const BenefitsSection = () => {
         </div>
 
         <div className="text-center">
-          <a href="#preco" className="btn-cta">QUERO EXPERIMENTAR</a>
-          <p className="mt-3 text-sm font-semibold text-muted-foreground">💰 Pagamento apenas na entrega!</p>
+          <a href="#prezzo" className="btn-cta">VOGLIO PROVARLO</a>
+          <p className="mt-3 text-sm font-semibold text-muted-foreground">💰 Pagamento solo alla consegna!</p>
         </div>
       </div>
     </section>

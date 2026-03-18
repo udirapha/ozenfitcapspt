@@ -3,9 +3,9 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 
 const PACKAGES = [
-  { value: "5meses", label: "⭐ 5 Meses — €100,00 (Portes grátis)", price: "100,00" },
-  { value: "3meses", label: "3 Meses — €75,00 (Portes grátis)", price: "75,00" },
-  { value: "1mes", label: "1 Mês — €34,00 (+ €4,99 portes)", price: "34,00" },
+  { value: "5meses", label: "⭐ 5 Mesi — €100,00 (Spedizione gratuita)", price: "100,00" },
+  { value: "3meses", label: "3 Mesi — €75,00 (Spedizione gratuita)", price: "75,00" },
+  { value: "1mes", label: "1 Mese — €34,00 (+ €4,99 spedizione)", price: "34,00" },
 ];
 
 const CODForm = () => {
@@ -30,7 +30,7 @@ const CODForm = () => {
 
       if (error) {
         console.error("Error submitting order:", error);
-        toast.error("Erro ao processar encomenda. Tente novamente.");
+        toast.error("Errore nell'elaborazione dell'ordine. Riprova.");
         return;
       }
 
@@ -40,7 +40,7 @@ const CODForm = () => {
       }
 
       toast.success(
-        `Encomenda #${data.orderNumber} recebida com sucesso! Entraremos em contacto em breve.`
+        `Ordine #${data.orderNumber} ricevuto con successo! Ti contatteremo a breve.`
       );
       setFormData({
         name: "",
@@ -52,7 +52,7 @@ const CODForm = () => {
       });
     } catch (err) {
       console.error("Unexpected error:", err);
-      toast.error("Erro inesperado. Tente novamente.");
+      toast.error("Errore imprevisto. Riprova.");
     } finally {
       setIsSubmitting(false);
     }
@@ -63,13 +63,13 @@ const CODForm = () => {
   };
 
   return (
-    <section id="formulario" className="section-dark py-12 md:py-16 px-4">
+    <section id="modulo" className="section-dark py-12 md:py-16 px-4">
       <div className="container max-w-lg mx-auto">
         <h2 className="font-heading text-2xl md:text-3xl font-bold text-center mb-2" style={{ color: "hsl(var(--section-dark-foreground))" }}>
-          Faça a Sua Encomenda Agora!
+          Fai il Tuo Ordine Ora!
         </h2>
         <p className="text-center text-sm mb-8" style={{ color: "hsl(var(--section-dark-foreground) / 0.7)" }}>
-          Pagamento na Entrega — Receba em 24 a 72 horas em Portugal
+          Pagamento alla Consegna — Ricevi in 24-72 ore in Italia
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -85,7 +85,7 @@ const CODForm = () => {
               maxLength={100}
               value={formData.name}
               onChange={handleChange}
-              placeholder="O seu nome completo"
+              placeholder="Il tuo nome completo"
               className="w-full px-4 py-3 rounded-lg bg-background text-foreground text-sm border border-border focus:ring-2 focus:ring-primary focus:outline-none"
               disabled={isSubmitting}
             />
@@ -93,7 +93,7 @@ const CODForm = () => {
 
           <div>
             <label className="block text-xs font-semibold mb-1" style={{ color: "hsl(var(--section-dark-foreground) / 0.8)" }}>
-              Telemóvel *
+              Telefono *
             </label>
             <input
               type="tel"
@@ -103,7 +103,7 @@ const CODForm = () => {
               maxLength={20}
               value={formData.phone}
               onChange={handleChange}
-              placeholder="+351 9XX XXX XXX"
+              placeholder="+39 3XX XXX XXXX"
               className="w-full px-4 py-3 rounded-lg bg-background text-foreground text-sm border border-border focus:ring-2 focus:ring-primary focus:outline-none"
               disabled={isSubmitting}
             />
@@ -111,7 +111,7 @@ const CODForm = () => {
 
           <div>
             <label className="block text-xs font-semibold mb-1" style={{ color: "hsl(var(--section-dark-foreground) / 0.8)" }}>
-              Morada Completa *
+              Indirizzo Completo *
             </label>
             <input
               type="text"
@@ -121,7 +121,7 @@ const CODForm = () => {
               maxLength={200}
               value={formData.address}
               onChange={handleChange}
-              placeholder="Rua, número, andar"
+              placeholder="Via, numero, piano"
               className="w-full px-4 py-3 rounded-lg bg-background text-foreground text-sm border border-border focus:ring-2 focus:ring-primary focus:outline-none"
               disabled={isSubmitting}
             />
@@ -130,7 +130,7 @@ const CODForm = () => {
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-semibold mb-1" style={{ color: "hsl(var(--section-dark-foreground) / 0.8)" }}>
-                Cidade *
+                Città *
               </label>
               <input
                 type="text"
@@ -140,14 +140,14 @@ const CODForm = () => {
                 maxLength={100}
                 value={formData.city}
                 onChange={handleChange}
-                placeholder="Lisboa"
+                placeholder="Roma"
                 className="w-full px-4 py-3 rounded-lg bg-background text-foreground text-sm border border-border focus:ring-2 focus:ring-primary focus:outline-none"
                 disabled={isSubmitting}
               />
             </div>
             <div>
               <label className="block text-xs font-semibold mb-1" style={{ color: "hsl(var(--section-dark-foreground) / 0.8)" }}>
-                Código Postal *
+                CAP *
               </label>
               <input
                 type="text"
@@ -157,7 +157,7 @@ const CODForm = () => {
                 maxLength={10}
                 value={formData.postalCode}
                 onChange={handleChange}
-                placeholder="XXXX-XXX"
+                placeholder="00100"
                 className="w-full px-4 py-3 rounded-lg bg-background text-foreground text-sm border border-border focus:ring-2 focus:ring-primary focus:outline-none"
                 disabled={isSubmitting}
               />
@@ -166,7 +166,7 @@ const CODForm = () => {
 
           <div>
             <label className="block text-xs font-semibold mb-1" style={{ color: "hsl(var(--section-dark-foreground) / 0.8)" }}>
-              Escolha o seu pacote *
+              Scegli il tuo pacchetto *
             </label>
             <select
               name="package"
@@ -188,11 +188,11 @@ const CODForm = () => {
             className="btn-cta w-full text-center pulse-animation disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={isSubmitting}
           >
-            {isSubmitting ? "A PROCESSAR..." : "CONFIRMAR ENCOMENDA 📦"}
+            {isSubmitting ? "ELABORAZIONE..." : "CONFERMA ORDINE 📦"}
           </button>
 
           <p className="text-center text-xs" style={{ color: "hsl(var(--section-dark-foreground) / 0.5)" }}>
-            💰 Pagamento na entrega — Só paga quando receber!
+            💰 Pagamento alla consegna — Paghi solo quando ricevi!
           </p>
         </form>
       </div>

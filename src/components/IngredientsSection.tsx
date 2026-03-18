@@ -2,43 +2,43 @@ const IngredientsSection = () => {
   const ingredients = [
     {
       name: "PSYLLIUM",
-      desc: "Fibra solúvel extraída da casca das sementes da planta Plantago ovata.",
-      benefits: ["Combate a prisão de ventre", "Reduz o colesterol mau", "Controla a glicemia"],
+      desc: "Fibra solubile estratta dalla buccia dei semi della pianta Plantago ovata.",
+      benefits: ["Combatte la stitichezza", "Riduce il colesterolo cattivo", "Controlla la glicemia"],
     },
     {
-      name: "GUARANÁ EM PÓ",
-      desc: "Suplemento que oferece diversos benefícios para a saúde, incluindo o emagrecimento.",
-      benefits: ["Aumento da disposição", "Favorece o emagrecimento", "Aumento da concentração", "Melhora do humor"],
+      name: "GUARANÀ IN POLVERE",
+      desc: "Integratore che offre diversi benefici per la salute, incluso il dimagrimento.",
+      benefits: ["Aumento dell'energia", "Favorisce il dimagrimento", "Aumento della concentrazione", "Miglioramento dell'umore"],
     },
     {
       name: "CROMO",
-      desc: "Regula os níveis de açúcar no sangue e melhora a ação da insulina.",
-      benefits: ["Controla o apetite", "Reduz a compulsão alimentar", "Estabiliza a glicose"],
+      desc: "Regola i livelli di zucchero nel sangue e migliora l'azione dell'insulina.",
+      benefits: ["Controlla l'appetito", "Riduce la fame compulsiva", "Stabilizza il glucosio"],
     },
     {
       name: "TRIPTOFANO",
-      desc: "Aminoácido essencial que desempenha um papel importante no organismo.",
-      benefits: ["Aumento da serotonina", "Controlo do apetite", "Melhora do sono", "Redução do stresse"],
+      desc: "Aminoacido essenziale che svolge un ruolo importante nell'organismo.",
+      benefits: ["Aumento della serotonina", "Controllo dell'appetito", "Miglioramento del sonno", "Riduzione dello stress"],
     },
     {
-      name: "CÚRCUMA",
-      desc: "Conhecida pelas suas propriedades anti-inflamatórias e antioxidantes.",
-      benefits: ["Reduz a inflamação", "Auxilia na diminuição das dores", "Combate o ganho de peso"],
+      name: "CURCUMA",
+      desc: "Conosciuta per le sue proprietà antinfiammatorie e antiossidanti.",
+      benefits: ["Riduce l'infiammazione", "Aiuta nella riduzione dei dolori", "Combatte l'aumento di peso"],
     },
     {
-      name: "ÁCIDO CLOROGÉNICO",
-      desc: "Fitoquímico concentrado no café verde, vital para quem deseja emagrecer.",
-      benefits: ["Inibe o acúmulo de gordura", "Reduz a concentração de glicose", "Promove o metabolismo"],
+      name: "ACIDO CLOROGENICO",
+      desc: "Fitochimico concentrato nel caffè verde, vitale per chi desidera dimagrire.",
+      benefits: ["Inibisce l'accumulo di grasso", "Riduce la concentrazione di glucosio", "Promuove il metabolismo"],
     },
     {
       name: "ANTOCIANINA",
-      desc: "Compostos encontrados em muitas frutas, responsáveis pela coloração roxa e avermelhada.",
-      benefits: ["Antioxidantes", "Combatem alterações metabólicas", "Diminuem o acúmulo de gordura"],
+      desc: "Composti presenti in molti frutti, responsabili della colorazione viola e rossastra.",
+      benefits: ["Antiossidanti", "Combattono le alterazioni metaboliche", "Diminuiscono l'accumulo di grasso"],
     },
     {
       name: "PIPERINA",
-      desc: "Substância com propriedades antimicrobiana, anti-inflamatória e antioxidante.",
-      benefits: ["Combate o acúmulo de gordura", "Reduz o apetite", "Reduz o colesterol"],
+      desc: "Sostanza con proprietà antimicrobiche, antinfiammatorie e antiossidanti.",
+      benefits: ["Combatte l'accumulo di grasso", "Riduce l'appetito", "Riduce il colesterolo"],
     },
   ];
 
@@ -46,10 +46,10 @@ const IngredientsSection = () => {
     <section className="section-alt py-12 md:py-16 px-4">
       <div className="container max-w-4xl mx-auto">
         <h2 className="font-heading text-2xl md:text-3xl font-bold text-center text-foreground mb-3">
-          Conheça os principais componentes da <span className="text-primary">Fórmula Americana</span>
+          Scopri i principali componenti della <span className="text-primary">Formula Americana</span>
         </h2>
         <p className="text-center text-muted-foreground mb-10 text-sm">
-          que está a ser um SUCESSO em Portugal
+          che sta avendo un ENORME SUCCESSO in Italia
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -70,7 +70,7 @@ const IngredientsSection = () => {
         </div>
 
         <div className="text-center mt-10">
-          <a href="#preco" className="btn-cta">QUERO EXPERIMENTAR</a>
+          <a href="#prezzo" className="btn-cta">VOGLIO PROVARLO</a>
         </div>
       </div>
     </section>

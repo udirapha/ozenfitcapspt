@@ -3,19 +3,19 @@ const FooterSection = () => {
     <footer className="bg-foreground py-8 px-4">
       <div className="container max-w-4xl mx-auto text-center">
         <p className="text-xs mb-4" style={{ color: "hsl(0 0% 100% / 0.5)" }}>
-          Todos os Direitos Reservados — OzenFit Caps © 2024-2026
+          Tutti i Diritti Riservati — OzenFit Caps © 2024-2026
         </p>
         <p className="text-xs mb-4" style={{ color: "hsl(0 0% 100% / 0.4)" }}>
-          A venda do OzenFit através de qualquer outro site pode colocar a sua saúde em risco.
-          Não compre falsificações e garanta um produto de qualidade comprando apenas através deste site oficial.
+          La vendita di OzenFit attraverso qualsiasi altro sito può mettere a rischio la tua salute.
+          Non acquistare prodotti contraffatti e garantisciti un prodotto di qualità acquistando solo attraverso questo sito ufficiale.
         </p>
         <div className="flex justify-center gap-6 text-xs" style={{ color: "hsl(0 0% 100% / 0.4)" }}>
-          <span>Política de Privacidade</span>
-          <span>Termos de Uso</span>
-          <span>Aviso Legal</span>
+          <span>Informativa sulla Privacy</span>
+          <span>Termini di Utilizzo</span>
+          <span>Avviso Legale</span>
         </div>
         <p className="text-xs mt-4" style={{ color: "hsl(0 0% 100% / 0.3)" }}>
-          Horário de Atendimento: Seg-Sex 9:00h às 18:00h
+          Orario di Assistenza: Lun-Ven 9:00 - 18:00
         </p>
       </div>
     </footer>
