@@ -6,28 +6,28 @@ const FAQSection = () => {
 
   const faqs = [
     {
-      q: "O que é o OZENFIT CAPS?",
-      a: "OZENFIT CAPS é um produto natural que combina os benefícios do Psyllium, Vitamina C, Cromo, Óleo de Cártamo, Cúrcuma e Cafeína. Promove saciedade, emagrecimento, energia e saúde para o corpo.",
+      q: "Cos'è OZENFIT CAPS?",
+      a: "OZENFIT CAPS è un prodotto naturale che combina i benefici di Psyllium, Vitamina C, Cromo, Olio di Cartamo, Curcuma e Caffeina. Promuove sazietà, dimagrimento, energia e salute per il corpo.",
     },
     {
-      q: "Como devo utilizar o OZENFIT CAPS?",
-      a: "Recomenda-se tomar 2 cápsulas por dia: uma antes do almoço e outra antes do jantar. É importante beber pelo menos 2 litros de água por dia. Evite tomar com bebidas quentes.",
+      q: "Come devo usare OZENFIT CAPS?",
+      a: "Si consiglia di assumere 2 capsule al giorno: una prima di pranzo e un'altra prima di cena. È importante bere almeno 2 litri d'acqua al giorno. Evitare di assumerlo con bevande calde.",
     },
     {
-      q: "O OZENFIT CAPS tem efeitos secundários?",
-      a: "OZENFIT CAPS não possui contraindicações, efeitos secundários ou hormonas. O produto é indicado para qualquer pessoa que deseje emagrecer de forma saudável.",
+      q: "OZENFIT CAPS ha effetti collaterali?",
+      a: "OZENFIT CAPS non presenta controindicazioni, effetti collaterali o ormoni. Il prodotto è indicato per qualsiasi persona che desideri dimagrire in modo sano.",
     },
     {
-      q: "Como funciona o pagamento na entrega?",
-      a: "Preencha o formulário com os seus dados e morada. Receberá a sua encomenda em 24 a 72 horas e paga diretamente ao estafeta no momento da entrega. Simples e seguro!",
+      q: "Come funziona il pagamento alla consegna?",
+      a: "Compila il modulo con i tuoi dati e indirizzo. Riceverai il tuo ordine in 24-72 ore e pagherai direttamente al corriere al momento della consegna. Semplice e sicuro!",
     },
     {
-      q: "Qual é o prazo de entrega em Portugal?",
-      a: "A entrega é feita em 24 a 72 horas para todo o território de Portugal Continental. Enviamos de forma discreta e segura.",
+      q: "Quali sono i tempi di consegna in Italia?",
+      a: "La consegna avviene in 24-72 ore su tutto il territorio italiano. Spediamo in modo discreto e sicuro.",
     },
     {
-      q: "Posso devolver se não gostar?",
-      a: "Sim! Oferecemos uma garantia de satisfação de 90 dias. Se não estiver satisfeito com os resultados, devolvemos 100% do seu dinheiro.",
+      q: "Posso restituirlo se non mi piace?",
+      a: "Sì! Offriamo una garanzia di soddisfazione di 90 giorni. Se non sei soddisfatto dei risultati, ti rimborsiamo il 100% dei tuoi soldi.",
     },
   ];
 
@@ -35,7 +35,7 @@ const FAQSection = () => {
     <section className="bg-background py-12 md:py-16 px-4">
       <div className="container max-w-2xl mx-auto">
         <h2 className="font-heading text-2xl md:text-3xl font-bold text-center text-foreground mb-10">
-          DÚVIDAS FREQUENTES
+          DOMANDE FREQUENTI
         </h2>
 
         <div className="space-y-3">

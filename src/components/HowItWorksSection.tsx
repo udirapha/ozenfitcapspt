@@ -4,33 +4,33 @@ const HowItWorksSection = () => {
   const features = [
     {
       icon: Flame,
-      title: "Auxilia no emagrecimento",
-      desc: "Aumenta o metabolismo através da boa nutrição das células e promove o emagrecimento acelerado. O organismo utiliza mais hidratos de carbono como fonte de energia, ajudando na perda de peso, especialmente na região abdominal.",
+      title: "Aiuta a dimagrire",
+      desc: "Aumenta il metabolismo attraverso la buona nutrizione delle cellule e promuove il dimagrimento accelerato. L'organismo utilizza più carboidrati come fonte di energia, aiutando nella perdita di peso, soprattutto nella zona addominale.",
     },
     {
       icon: UtensilsCrossed,
-      title: "Reduz a fome excessiva",
-      desc: "O psyllium, quitosana e cromo que compõem esta potente fórmula reduzem a vontade de comer constantemente! Promovem uma sensação de saciedade sem causar danos à saúde.",
+      title: "Riduce la fame eccessiva",
+      desc: "Il psyllium, il chitosano e il cromo che compongono questa potente formula riducono la voglia di mangiare costantemente! Promuovono un senso di sazietà senza causare danni alla salute.",
     },
     {
       icon: Zap,
-      title: "Energia para o dia a dia",
-      desc: "Uma poderosa fonte de proteínas, a spirulina contida na fórmula fornece boas quantidades de energia. Fortalece as bactérias boas do intestino e aumenta a produção de vitamina B6.",
+      title: "Energia per la vita quotidiana",
+      desc: "Una potente fonte di proteine, la spirulina contenuta nella formula fornisce buone quantità di energia. Rafforza i batteri buoni dell'intestino e aumenta la produzione di vitamina B6.",
     },
     {
       icon: Droplets,
-      title: "Elimina a gordura corporal",
-      desc: "Além de emagrecer acelerando o metabolismo, através da sua composição rica em psyllium, melhora o fluxo intestinal sem prejudicar a saúde do corpo.",
+      title: "Elimina il grasso corporeo",
+      desc: "Oltre a dimagrire accelerando il metabolismo, grazie alla sua composizione ricca di psyllium, migliora il transito intestinale senza danneggiare la salute del corpo.",
     },
     {
       icon: Shield,
-      title: "Antioxidante, promove saúde",
-      desc: "Fórmula inovadora com substância de alto poder antioxidante. Ao mesmo tempo que promove o emagrecimento, ajuda a prevenir doenças no organismo.",
+      title: "Antiossidante, promuove la salute",
+      desc: "Formula innovativa con sostanza ad alto potere antiossidante. Allo stesso tempo che promuove il dimagrimento, aiuta a prevenire malattie nell'organismo.",
     },
     {
       icon: Leaf,
-      title: "Natural e bom para o corpo",
-      desc: "Todos os componentes são 100% naturais e foram doseados corretamente para produzir emagrecimento sem causar danos ao corpo.",
+      title: "Naturale e buono per il corpo",
+      desc: "Tutti i componenti sono 100% naturali e sono stati dosati correttamente per produrre dimagrimento senza causare danni al corpo.",
     },
   ];
 
@@ -38,9 +38,9 @@ const HowItWorksSection = () => {
     <section className="bg-background py-12 md:py-16 px-4">
       <div className="container max-w-4xl mx-auto">
         <h2 className="font-heading text-2xl md:text-3xl font-bold text-center text-foreground mb-3">
-          Qual o segredo do OZENFIT e por que <span className="text-primary">realmente funciona?</span>
+          Qual è il segreto di OZENFIT e perché <span className="text-primary">funziona davvero?</span>
         </h2>
-        <p className="text-center text-muted-foreground mb-10 text-sm">Compra 100% segura e satisfação garantida!</p>
+        <p className="text-center text-muted-foreground mb-10 text-sm">Acquisto 100% sicuro e soddisfazione garantita!</p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {features.map((f, i) => (
@@ -55,7 +55,7 @@ const HowItWorksSection = () => {
         </div>
 
         <div className="text-center mt-10">
-          <a href="#preco" className="btn-cta">QUERO EXPERIMENTAR</a>
+          <a href="#prezzo" className="btn-cta">VOGLIO PROVARLO</a>
         </div>
       </div>
     </section>

@@ -3,24 +3,24 @@ import { Star } from "lucide-react";
 const TestimonialsSection = () => {
   const testimonials = [
     {
-      name: "Sofia Ferreira",
+      name: "Sofia Rossi",
       age: 34,
-      text: "Super recomendo! O produto corresponde aos resultados que tive, já fiz nova encomenda. Desde já agradeço a toda a equipa!",
+      text: "Lo consiglio tantissimo! Il prodotto corrisponde ai risultati che ho ottenuto, ho già fatto un nuovo ordine. Ringrazio tutto il team!",
     },
     {
-      name: "Ana Rodrigues",
+      name: "Anna Bianchi",
       age: 38,
-      text: "Sinto-me muito mais confiante com as mudanças no meu corpo. A minha barriga vivia inchada, parecia que estava doente. Estou muito satisfeita com o tratamento! Recomendo imenso!",
+      text: "Mi sento molto più sicura con i cambiamenti nel mio corpo. La mia pancia era sempre gonfia, sembrava che fossi malata. Sono molto soddisfatta del trattamento! Lo consiglio a tutti!",
     },
     {
-      name: "Miguel Santos",
+      name: "Marco Ferrari",
       age: 47,
-      text: "O produto realmente funciona. Mudança incrível logo nos primeiros dias, já estou a sentir diferença na barriga e também na saciedade.",
+      text: "Il prodotto funziona davvero. Un cambiamento incredibile già nei primi giorni, sto già notando la differenza sulla pancia e anche sulla sazietà.",
     },
     {
-      name: "Catarina Oliveira",
+      name: "Giulia Colombo",
       age: 41,
-      text: "O produto chegou super rápido, antes mesmo da data prevista. Adorei o OZENFIT CAPS, com certeza comprarei mais vezes. Recomendo a toda a gente!",
+      text: "Il prodotto è arrivato velocissimo, prima ancora della data prevista. Ho adorato OZENFIT CAPS, sicuramente lo comprerò di nuovo. Lo consiglio a tutti!",
     },
   ];
 
@@ -28,7 +28,7 @@ const TestimonialsSection = () => {
     <section className="section-alt py-12 md:py-16 px-4">
       <div className="container max-w-4xl mx-auto">
         <h2 className="font-heading text-2xl md:text-3xl font-bold text-center text-foreground mb-10">
-          Depoimentos
+          Testimonianze
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -39,8 +39,8 @@ const TestimonialsSection = () => {
                   {t.name.charAt(0)}
                 </div>
                 <div>
-                  <p className="font-heading font-bold text-foreground text-sm">{t.name}, {t.age} anos</p>
-                  <p className="text-xs text-primary font-semibold">Perfil verificado ✓</p>
+                  <p className="font-heading font-bold text-foreground text-sm">{t.name}, {t.age} anni</p>
+                  <p className="text-xs text-primary font-semibold">Profilo verificato ✓</p>
                 </div>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed mb-3">"{t.text}"</p>
@@ -55,7 +55,7 @@ const TestimonialsSection = () => {
         </div>
 
         <div className="text-center mt-10">
-          <a href="#preco" className="btn-cta">QUERO EXPERIMENTAR</a>
+          <a href="#prezzo" className="btn-cta">VOGLIO PROVARLO</a>
         </div>
       </div>
     </section>

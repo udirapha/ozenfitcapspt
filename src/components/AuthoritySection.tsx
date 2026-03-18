@@ -5,10 +5,10 @@ const AuthoritySection = () => {
     <section className="bg-background py-12 md:py-16 px-4">
       <div className="container max-w-4xl mx-auto">
         <h2 className="font-heading text-2xl md:text-3xl font-bold text-center text-foreground mb-3">
-          Aprovado por <span className="text-primary">Especialistas em Saúde</span>
+          Approvato da <span className="text-primary">Specialisti della Salute</span>
         </h2>
         <p className="text-center text-muted-foreground mb-10 text-sm">
-          A fórmula do OzenFit Caps é baseada em estudos científicos e recomendada por profissionais.
+          La formula di OzenFit Caps è basata su studi scientifici e raccomandata da professionisti.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -19,14 +19,14 @@ const AuthoritySection = () => {
                 Dr
               </div>
               <div>
-                <p className="font-heading font-bold text-foreground">Dr. Ricardo Mendes</p>
-                <p className="text-xs text-primary font-semibold">Médico Nutrologista — CRM 52.847</p>
+                <p className="font-heading font-bold text-foreground">Dr. Marco Bianchi</p>
+                <p className="text-xs text-primary font-semibold">Medico Nutrizionista</p>
               </div>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed italic">
-              "O OzenFit Caps combina ingredientes com eficácia comprovada na redução do apetite e aceleração do metabolismo. 
-              A sinergia entre psyllium, cromo e cúrcuma proporciona resultados consistentes quando aliados a hábitos de vida saudáveis. 
-              É uma alternativa natural e segura ao Ozempic injetável."
+              "OzenFit Caps combina ingredienti con efficacia comprovata nella riduzione dell'appetito e nell'accelerazione del metabolismo. 
+              La sinergia tra psyllium, cromo e curcuma fornisce risultati consistenti quando abbinati a abitudini di vita sane. 
+              È un'alternativa naturale e sicura all'Ozempic iniettabile."
             </p>
           </div>
 
@@ -35,18 +35,18 @@ const AuthoritySection = () => {
             {[
               {
                 icon: ShieldCheck,
-                title: "Fórmula Testada e Aprovada",
-                desc: "Todos os ingredientes passam por rigorosos testes de qualidade e são aprovados pela EFSA (Autoridade Europeia de Segurança Alimentar).",
+                title: "Formula Testata e Approvata",
+                desc: "Tutti gli ingredienti superano rigorosi test di qualità e sono approvati dall'EFSA (Autorità Europea per la Sicurezza Alimentare).",
               },
               {
                 icon: Award,
-                title: "Registo DGAV",
-                desc: "Produto registado junto da Direção-Geral de Alimentação e Veterinária, garantindo conformidade com a legislação portuguesa.",
+                title: "Registrazione Ministeriale",
+                desc: "Prodotto registrato presso il Ministero della Salute, garantendo conformità con la legislazione italiana.",
               },
               {
                 icon: Microscope,
-                title: "Base Científica",
-                desc: "Ingredientes com estudos clínicos publicados que comprovam a eficácia no controlo do apetite e perda de peso.",
+                title: "Base Scientifica",
+                desc: "Ingredienti con studi clinici pubblicati che comprovano l'efficacia nel controllo dell'appetito e nella perdita di peso.",
               },
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-4">

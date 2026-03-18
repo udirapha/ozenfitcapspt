@@ -29,10 +29,10 @@ const HeroSection = () => {
     <>
       {/* Urgency bars */}
       <div className="urgency-bar text-center py-2.5 px-4 text-sm md:text-base font-bold">
-        ⚠️ ATENÇÃO: Devido à elevada procura, os nossos frascos de OZENFIT CAPS estão quase esgotados! ÚLTIMAS UNIDADES!
+        ⚠️ ATTENZIONE: A causa dell'elevata domanda, le nostre capsule OZENFIT CAPS stanno per esaurirsi! ULTIME UNITÀ!
       </div>
       <div className="green-bar text-center py-2 px-4 text-xs md:text-sm font-semibold">
-        ATENÇÃO: Este produto está prestes a esgotar, por isso tem uma oferta especial apenas hoje!
+        ATTENZIONE: Questo prodotto sta per esaurirsi, per questo hai un'offerta speciale solo oggi!
       </div>
 
       {/* Hero */}
@@ -46,10 +46,10 @@ const HeroSection = () => {
             />
           </div>
           <h1 className="font-heading text-3xl md:text-5xl font-black text-foreground leading-tight mb-4">
-            O PODER DO OZEMPIC <span className="text-primary">EM CÁPSULAS.</span>
+            IL POTERE DELL'OZEMPIC <span className="text-primary">IN CAPSULE.</span>
           </h1>
           <p className="font-heading text-base md:text-lg text-muted-foreground font-semibold mb-8 max-w-2xl mx-auto">
-            Chega de gastar fortunas em injeções e ainda sofrer com efeito sanfona ou rebote.
+            Basta spendere fortune in iniezioni e soffrire ancora dell'effetto yo-yo.
           </p>
 
           {/* VSL Video */}
@@ -82,11 +82,11 @@ const HeroSection = () => {
               </div>
             </div>
             <div className="text-center mt-6">
-              <a href="#preco" className="btn-cta pulse-animation text-base md:text-lg">
-                QUERO EXPERIMENTAR AGORA! 🔥
+              <a href="#prezzo" className="btn-cta pulse-animation text-base md:text-lg">
+                VOGLIO PROVARLO ORA! 🔥
               </a>
               <p className="mt-3 text-sm font-semibold text-muted-foreground flex items-center justify-center gap-1.5">
-                💰 Só paga quando receber na sua porta!
+                💰 Paghi solo alla consegna!
               </p>
             </div>
           </div>
@@ -94,7 +94,7 @@ const HeroSection = () => {
           <div className="flex justify-center mb-8">
             <img
               src={productBundle}
-              alt="OzenFit Caps - Suplemento para emagrecimento"
+              alt="OzenFit Caps - Integratore per dimagrire"
               className="w-56 md:w-80 float-animation"
             />
           </div>
@@ -102,10 +102,10 @@ const HeroSection = () => {
           {/* Benefits quick list */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto mb-8 text-left">
             {[
-              { icon: Flame, text: "Queime calorias sem exercícios constantes" },
-              { icon: Utensils, text: "Reduz a vontade de comer e aumenta a saciedade" },
-              { icon: Zap, text: "Melhora o funcionamento do intestino" },
-              { icon: ShieldCheck, text: "100% natural, sem efeitos secundários" },
+              { icon: Flame, text: "Brucia calorie senza esercizi costanti" },
+              { icon: Utensils, text: "Riduce la voglia di mangiare e aumenta la sazietà" },
+              { icon: Zap, text: "Migliora il funzionamento dell'intestino" },
+              { icon: ShieldCheck, text: "100% naturale, senza effetti collaterali" },
             ].map((item, i) => (
               <div key={i} className="flex items-center gap-3">
                 <div className="flex-shrink-0 w-10 h-10 rounded-full bg-success-light flex items-center justify-center">
@@ -117,14 +117,14 @@ const HeroSection = () => {
           </div>
 
           <p className="font-heading text-lg md:text-xl font-bold text-foreground mb-6">
-            SEM DIETAS LOUCAS OU EXERCÍCIOS FÍSICOS
+            SENZA DIETE ESTREME O ESERCIZI FISICI
           </p>
 
-          <a href="#preco" className="btn-cta pulse-animation text-base md:text-lg">
-            QUERO EXPERIMENTAR! 🔥
+          <a href="#prezzo" className="btn-cta pulse-animation text-base md:text-lg">
+            VOGLIO PROVARLO! 🔥
           </a>
           <p className="mt-3 text-sm font-semibold text-muted-foreground flex items-center justify-center gap-1.5">
-            📦 Pagamento na entrega — Não paga nada agora!
+            📦 Pagamento alla consegna — Non paghi nulla adesso!
           </p>
         </div>
       </section>

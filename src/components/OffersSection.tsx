@@ -6,53 +6,53 @@ const OffersSection = () => {
   const offers = [
     {
       featured: true,
-      label: "O MAIS VENDIDO",
-      title: "TRATAMENTO 5 MESES",
-      subtitle: "PAGUE 3 E LEVE 5! + E-book",
+      label: "IL PIÙ VENDUTO",
+      title: "TRATTAMENTO 5 MESI",
+      subtitle: "PAGA 3 E RICEVI 5! + E-book",
       image: offer5,
       price: "€79,90",
-      priceNote: "ou 3x de €26,63",
+      priceNote: "o 3x di €26,63",
       originalPrice: "€199,50",
-      shipping: "Portes grátis",
+      shipping: "Spedizione gratuita",
     },
     {
       featured: false,
       label: "",
-      title: "TRATAMENTO 3 MESES",
-      subtitle: "PAGUE 2 E LEVE 3! + E-book",
+      title: "TRATTAMENTO 3 MESI",
+      subtitle: "PAGA 2 E RICEVI 3! + E-book",
       image: offer3,
       price: "€59,90",
-      priceNote: "ou 3x de €19,97",
+      priceNote: "o 3x di €19,97",
       originalPrice: "€119,70",
-      shipping: "Portes grátis",
+      shipping: "Spedizione gratuita",
     },
     {
       featured: false,
       label: "",
-      title: "TRATAMENTO 1 MÊS",
-      subtitle: "Para experimentar LEVE 1!",
+      title: "TRATTAMENTO 1 MESE",
+      subtitle: "Per provare RICEVI 1!",
       image: offer1,
       price: "€39,90",
       priceNote: "",
       originalPrice: "€59,90",
-      shipping: "Portes: €4,99",
+      shipping: "Spedizione: €4,99",
     },
   ];
 
   return (
-    <section id="preco" className="bg-background py-12 md:py-16 px-4">
+    <section id="prezzo" className="bg-background py-12 md:py-16 px-4">
       <div className="container max-w-4xl mx-auto">
         <div className="flex items-center justify-center gap-2 mb-4">
           <span className="text-lg">🔒</span>
           <span className="font-heading font-bold text-sm md:text-base text-primary uppercase tracking-wide">
-            Compra 100% Segura com Pagamento na Entrega!
+            Acquisto 100% Sicuro con Pagamento alla Consegna!
           </span>
         </div>
         <h2 className="font-heading text-2xl md:text-3xl font-bold text-center text-foreground mb-2">
-          Escolha o <span className="text-primary">MELHOR TRATAMENTO</span> para si!
+          Scegli il <span className="text-primary">MIGLIOR TRATTAMENTO</span> per te!
         </h2>
         <p className="text-center text-muted-foreground mb-10 text-sm">
-          Comece hoje mesmo a emagrecer com saúde. Pagamento na entrega!
+          Inizia oggi stesso a dimagrire con salute. Pagamento alla consegna!
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
@@ -74,10 +74,10 @@ const OffersSection = () => {
                   <p className="font-heading text-2xl font-black text-primary">{o.price}</p>
                   {o.priceNote && <p className="text-xs text-muted-foreground">{o.priceNote}</p>}
                 </div>
-                <a href="#formulario" className="btn-cta w-full text-center text-sm py-3">
-                  ENCOMENDAR AGORA
+                <a href="#modulo" className="btn-cta w-full text-center text-sm py-3">
+                  ORDINA ORA
                 </a>
-                <p className="text-xs text-center text-primary font-bold mt-2">💰 Pague só na entrega!</p>
+                <p className="text-xs text-center text-primary font-bold mt-2">💰 Paghi solo alla consegna!</p>
                 <p className="text-xs text-center text-muted-foreground mt-3">{o.shipping}</p>
               </div>
             </div>
@@ -87,12 +87,12 @@ const OffersSection = () => {
         {/* Trust badges */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-xl mx-auto">
           {[
-            { icon: "🔒", text: "Compra Segura" },
-            { icon: "✅", text: "Satisfação Garantida" },
-            { icon: "🚚", text: "Entrega 24-72h em Portugal" },
-            { icon: "🔐", text: "Privacidade Protegida" },
-            { icon: "💰", text: "Pagamento na Entrega" },
-            { icon: "🛡️", text: "Site 100% Seguro" },
+            { icon: "🔒", text: "Acquisto Sicuro" },
+            { icon: "✅", text: "Soddisfazione Garantita" },
+            { icon: "🚚", text: "Consegna 24-72h in Italia" },
+            { icon: "🔐", text: "Privacy Protetta" },
+            { icon: "💰", text: "Pagamento alla Consegna" },
+            { icon: "🛡️", text: "Sito 100% Sicuro" },
           ].map((badge, i) => (
             <div key={i} className="flex items-center gap-2 text-xs text-muted-foreground">
               <span className="text-lg">{badge.icon}</span>
