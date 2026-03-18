@@ -14,7 +14,7 @@ const HeroSection = () => {
 
     if (iframeRef.current) {
       iframeRef.current.src =
-        "https://scripts.converteai.net/e10f2ed1-387e-42b5-add3-183c76638cc5/players/69b02f89820829989cca9ec9/v4/embed.html" +
+        "https://scripts.converteai.net/e10f2ed1-387e-42b5-add3-183c76638cc5/players/69bae2c3acddada823a59520/v4/embed.html" +
         (location.search || "?") +
         "&vl=" +
         encodeURIComponent(location.href);
