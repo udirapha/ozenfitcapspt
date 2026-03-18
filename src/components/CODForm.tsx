@@ -8,10 +8,20 @@ const PACKAGES = [
   { value: "1mes", label: "1 Mese — €34,00 (+ €4,99 spedizione)", price: "34,00" },
 ];
 
+const COUNTRY_CODES = [
+  { code: "+39", country: "🇮🇹 Italia" },
+  { code: "+41", country: "🇨🇭 Svizzera" },
+  { code: "+33", country: "🇫🇷 Francia" },
+  { code: "+49", country: "🇩🇪 Germania" },
+  { code: "+43", country: "🇦🇹 Austria" },
+  { code: "+386", country: "🇸🇮 Slovenia" },
+];
+
 const CODForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
+    countryCode: "+39",
     address: "",
     city: "",
     postalCode: "",
@@ -24,8 +34,16 @@ const CODForm = () => {
     setIsSubmitting(true);
 
     try {
+      const fullPhone = `${formData.countryCode}${formData.phone.replace(/\s+/g, '')}`;
       const { data, error } = await supabase.functions.invoke("create-cod-order", {
-        body: formData,
+        body: {
+          name: formData.name,
+          phone: fullPhone,
+          address: formData.address,
+          city: formData.city,
+          postalCode: formData.postalCode,
+          package: formData.package,
+        },
       });
 
       if (error) {
@@ -45,6 +63,7 @@ const CODForm = () => {
       setFormData({
         name: "",
         phone: "",
+        countryCode: "+39",
         address: "",
         city: "",
         postalCode: "",
@@ -95,18 +114,33 @@ const CODForm = () => {
             <label className="block text-xs font-semibold mb-1" style={{ color: "hsl(var(--section-dark-foreground) / 0.8)" }}>
               Telefono *
             </label>
-            <input
-              type="tel"
-              name="phone"
-              required
-              minLength={9}
-              maxLength={20}
-              value={formData.phone}
-              onChange={handleChange}
-              placeholder="+39 3XX XXX XXXX"
-              className="w-full px-4 py-3 rounded-lg bg-background text-foreground text-sm border border-border focus:ring-2 focus:ring-primary focus:outline-none"
-              disabled={isSubmitting}
-            />
+            <div className="flex gap-2">
+              <select
+                name="countryCode"
+                value={formData.countryCode}
+                onChange={handleChange}
+                className="w-[120px] flex-shrink-0 px-2 py-3 rounded-lg bg-background text-foreground text-sm border border-border focus:ring-2 focus:ring-primary focus:outline-none"
+                disabled={isSubmitting}
+              >
+                {COUNTRY_CODES.map((cc) => (
+                  <option key={cc.code} value={cc.code}>
+                    {cc.country} {cc.code}
+                  </option>
+                ))}
+              </select>
+              <input
+                type="tel"
+                name="phone"
+                required
+                minLength={6}
+                maxLength={15}
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="3XX XXX XXXX"
+                className="flex-1 px-4 py-3 rounded-lg bg-background text-foreground text-sm border border-border focus:ring-2 focus:ring-primary focus:outline-none"
+                disabled={isSubmitting}
+              />
+            </div>
           </div>
 
           <div>
