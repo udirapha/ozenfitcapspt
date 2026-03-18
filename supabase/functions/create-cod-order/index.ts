@@ -68,6 +68,12 @@ serve(async (req) => {
     const firstName = nameParts[0];
     const lastName = nameParts.slice(1).join(' ') || firstName;
 
+    // Normalize phone to E.164 format for Italy
+    let normalizedPhone = phone.trim().replace(/\s+/g, '');
+    if (!normalizedPhone.startsWith('+')) {
+      normalizedPhone = '+39' + normalizedPhone;
+    }
+
     const orderPayload = {
       order: {
         line_items: [
@@ -79,7 +85,7 @@ serve(async (req) => {
         customer: {
           first_name: firstName,
           last_name: lastName,
-          phone: phone.trim(),
+          phone: normalizedPhone,
         },
         shipping_address: {
           first_name: firstName,
@@ -87,8 +93,8 @@ serve(async (req) => {
           address1: address.trim(),
           city: city.trim(),
           zip: postalCode.trim(),
-          country: "PT",
-          phone: phone.trim(),
+          country: "IT",
+          phone: normalizedPhone,
         },
         billing_address: {
           first_name: firstName,
@@ -96,12 +102,12 @@ serve(async (req) => {
           address1: address.trim(),
           city: city.trim(),
           zip: postalCode.trim(),
-          country: "PT",
-          phone: phone.trim(),
+          country: "IT",
+          phone: normalizedPhone,
         },
         financial_status: "pending",
         tags: "COD, landing-page",
-        note: `Pedido COD via Landing Page - ${variant.title}`,
+        note: `Ordine COD via Landing Page - ${variant.title}`,
         send_receipt: false,
         send_fulfillment_receipt: false,
       },
