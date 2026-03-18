@@ -23,8 +23,31 @@ const HeroSection = () => {
         encodeURIComponent(location.href);
     }
 
+    // Listen for smartplayer time to show CTA
+    const handleMessage = (event: MessageEvent) => {
+      try {
+        const data = typeof event.data === "string" ? JSON.parse(event.data) : event.data;
+        const time = data?.currentTime || data?.time || 0;
+        if (time >= UNLOCK_TIME_SECONDS) setShowCta(true);
+      } catch {}
+    };
+    window.addEventListener("message", handleMessage);
+
+    const interval = setInterval(() => {
+      try {
+        const players = (window as any).smartplayer?.instances;
+        if (players?.[0]) {
+          const p = players[0];
+          const t = p.smartAutoPlay?.currentTime || p.video?.currentTime || p.currentTime || 0;
+          if (t >= UNLOCK_TIME_SECONDS) setShowCta(true);
+        }
+      } catch {}
+    }, 1000);
+
     return () => {
       try { document.head.removeChild(s); } catch {}
+      window.removeEventListener("message", handleMessage);
+      clearInterval(interval);
     };
   }, []);
 
