@@ -1,8 +1,9 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
 const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers":
+    "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
 // Variant mapping: form package value → Shopify variant ID
@@ -12,143 +13,205 @@ const VARIANT_MAP: Record<string, { variantId: number; price: string; title: str
   "5meses": { variantId: 52816771744080, price: "100.00", title: "5 unidades" },
 };
 
+const normalizePhone = (rawPhone: string) => {
+  let phone = rawPhone.trim().replace(/[^\d+]/g, "");
+
+  if (phone.startsWith("00")) {
+    phone = `+${phone.slice(2)}`;
+  }
+
+  if (!phone.startsWith("+")) {
+    phone = `+39${phone}`;
+  }
+
+  const digits = phone.slice(1).replace(/\D/g, "");
+  return `+${digits}`;
+};
+
+const getPhoneIssue = (errors: unknown) => {
+  if (!errors || typeof errors !== "object") return null;
+
+  const e = errors as {
+    customer?: { phone_number?: string[] };
+    shipping_address?: { phone?: string[] };
+    billing_address?: { phone?: string[] };
+  };
+
+  return e.customer?.phone_number?.[0] ?? e.shipping_address?.phone?.[0] ?? e.billing_address?.phone?.[0] ?? null;
+};
+
 serve(async (req) => {
-  if (req.method === 'OPTIONS') {
-    return new Response('ok', { headers: corsHeaders });
+  if (req.method === "OPTIONS") {
+    return new Response("ok", { headers: corsHeaders });
   }
 
   try {
-    const SHOPIFY_ACCESS_TOKEN = Deno.env.get('SHOPIFY_ACCESS_TOKEN');
+    const SHOPIFY_ACCESS_TOKEN = Deno.env.get("SHOPIFY_ACCESS_TOKEN");
     if (!SHOPIFY_ACCESS_TOKEN) {
-      throw new Error('SHOPIFY_ACCESS_TOKEN is not configured');
+      throw new Error("SHOPIFY_ACCESS_TOKEN is not configured");
     }
 
     const body = await req.json();
     const { name, phone, address, city, postalCode, package: pkg } = body;
 
     // Validate required fields
-    if (!name || typeof name !== 'string' || name.trim().length < 2 || name.length > 100) {
-      return new Response(JSON.stringify({ error: 'Nome inválido' }), {
-        status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    if (!name || typeof name !== "string" || name.trim().length < 2 || name.length > 100) {
+      return new Response(JSON.stringify({ error: "Nome inválido" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
-    if (!phone || typeof phone !== 'string' || phone.trim().length < 9 || phone.length > 20) {
-      return new Response(JSON.stringify({ error: 'Telemóvel inválido' }), {
-        status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    if (!phone || typeof phone !== "string" || phone.trim().length < 7 || phone.length > 30) {
+      return new Response(JSON.stringify({ error: "Telemóvel inválido" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
-    if (!address || typeof address !== 'string' || address.trim().length < 5 || address.length > 200) {
-      return new Response(JSON.stringify({ error: 'Morada inválida' }), {
-        status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    if (!address || typeof address !== "string" || address.trim().length < 5 || address.length > 200) {
+      return new Response(JSON.stringify({ error: "Morada inválida" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
-    if (!city || typeof city !== 'string' || city.trim().length < 2 || city.length > 100) {
-      return new Response(JSON.stringify({ error: 'Cidade inválida' }), {
-        status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    if (!city || typeof city !== "string" || city.trim().length < 2 || city.length > 100) {
+      return new Response(JSON.stringify({ error: "Cidade inválida" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
-    if (!postalCode || typeof postalCode !== 'string' || postalCode.trim().length < 4 || postalCode.length > 10) {
-      return new Response(JSON.stringify({ error: 'Código postal inválido' }), {
-        status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    if (!postalCode || typeof postalCode !== "string" || postalCode.trim().length < 4 || postalCode.length > 10) {
+      return new Response(JSON.stringify({ error: "Código postal inválido" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
     const variant = VARIANT_MAP[pkg];
     if (!variant) {
-      return new Response(JSON.stringify({ error: 'Pacote inválido' }), {
-        status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      return new Response(JSON.stringify({ error: "Pacote inválido" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
-    const SHOP_DOMAIN = '1ievzb-tk.myshopify.com';
-    const API_VERSION = '2025-01';
-
-    // Split name into first/last
-    const nameParts = name.trim().split(' ');
-    const firstName = nameParts[0];
-    const lastName = nameParts.slice(1).join(' ') || firstName;
-
-    // Normalize phone to E.164 format for Italy
-    let normalizedPhone = phone.trim().replace(/\s+/g, '');
-    if (!normalizedPhone.startsWith('+')) {
-      normalizedPhone = '+39' + normalizedPhone;
+    const normalizedPhone = normalizePhone(phone);
+    if (!/^\+[1-9]\d{7,14}$/.test(normalizedPhone)) {
+      return new Response(
+        JSON.stringify({ error: "Numero di telefono non valido. Inserisci solo le cifre senza prefisso." }),
+        {
+          status: 400,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        },
+      );
     }
 
-    const orderPayload = {
-      order: {
-        line_items: [
-          {
-            variant_id: variant.variantId,
-            quantity: 1,
-          },
-        ],
-        customer: {
-          first_name: firstName,
-          last_name: lastName,
-          phone: normalizedPhone,
+    const SHOP_DOMAIN = "1ievzb-tk.myshopify.com";
+    const API_VERSION = "2025-01";
+
+    // Split name into first/last
+    const nameParts = name.trim().split(" ");
+    const firstName = nameParts[0];
+    const lastName = nameParts.slice(1).join(" ") || firstName;
+
+    const baseOrder = {
+      line_items: [
+        {
+          variant_id: variant.variantId,
+          quantity: 1,
         },
+      ],
+      shipping_address: {
+        first_name: firstName,
+        last_name: lastName,
+        address1: address.trim(),
+        city: city.trim(),
+        zip: postalCode.trim(),
+        country: "IT",
+      },
+      billing_address: {
+        first_name: firstName,
+        last_name: lastName,
+        address1: address.trim(),
+        city: city.trim(),
+        zip: postalCode.trim(),
+        country: "IT",
+      },
+      financial_status: "pending",
+      tags: "COD, landing-page",
+      note: `Ordine COD via Landing Page - ${variant.title} | Telefono: ${normalizedPhone}`,
+      send_receipt: false,
+      send_fulfillment_receipt: false,
+    };
+
+    const createOrder = async (payload: unknown) => {
+      const response = await fetch(`https://${SHOP_DOMAIN}/admin/api/${API_VERSION}/orders.json`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Shopify-Access-Token": SHOPIFY_ACCESS_TOKEN,
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
+      return { response, data };
+    };
+
+    // First attempt: include phone in addresses
+    let result = await createOrder({
+      order: {
+        ...baseOrder,
         shipping_address: {
-          first_name: firstName,
-          last_name: lastName,
-          address1: address.trim(),
-          city: city.trim(),
-          zip: postalCode.trim(),
-          country: "IT",
+          ...baseOrder.shipping_address,
           phone: normalizedPhone,
         },
         billing_address: {
-          first_name: firstName,
-          last_name: lastName,
-          address1: address.trim(),
-          city: city.trim(),
-          zip: postalCode.trim(),
-          country: "IT",
+          ...baseOrder.billing_address,
           phone: normalizedPhone,
         },
-        financial_status: "pending",
-        tags: "COD, landing-page",
-        note: `Ordine COD via Landing Page - ${variant.title}`,
-        send_receipt: false,
-        send_fulfillment_receipt: false,
       },
-    };
+    });
 
-    const response = await fetch(
-      `https://${SHOP_DOMAIN}/admin/api/${API_VERSION}/orders.json`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Shopify-Access-Token': SHOPIFY_ACCESS_TOKEN,
+    // Fallback: if phone is rejected by Shopify, retry without structured phone fields
+    if (!result.response.ok && getPhoneIssue(result.data?.errors)) {
+      result = await createOrder({
+        order: {
+          ...baseOrder,
         },
-        body: JSON.stringify(orderPayload),
+      });
+    }
+
+    if (!result.response.ok) {
+      const phoneError = getPhoneIssue(result.data?.errors);
+
+      if (phoneError) {
+        return new Response(
+          JSON.stringify({ error: "Numero di telefono non valido. Inserisci solo cifre dopo il prefisso selezionato." }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+        );
       }
-    );
 
-    const data = await response.json();
-
-    if (!response.ok) {
-      console.error('Shopify order creation failed:', JSON.stringify(data));
+      console.error("Shopify order creation failed:", JSON.stringify(result.data));
       return new Response(
-        JSON.stringify({ error: 'Erro ao criar pedido na Shopify', details: data.errors }),
-        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        JSON.stringify({ error: "Erro ao criar pedido na Shopify", details: result.data?.errors }),
+        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
       );
     }
 
     return new Response(
-      JSON.stringify({ 
-        success: true, 
-        orderNumber: data.order?.order_number,
-        orderId: data.order?.id,
+      JSON.stringify({
+        success: true,
+        orderNumber: result.data.order?.order_number,
+        orderId: result.data.order?.id,
       }),
-      { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } },
     );
   } catch (error: unknown) {
-    console.error('Error creating COD order:', error);
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    console.error("Error creating COD order:", error);
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
     return new Response(
       JSON.stringify({ error: errorMessage }),
-      { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
     );
   }
 });
