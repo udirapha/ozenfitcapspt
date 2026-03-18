@@ -35,7 +35,7 @@ const OffersSection = () => {
       price: "€39,90",
       priceNote: "",
       originalPrice: "€59,90",
-      shipping: "Spedizione: €4,99",
+      shipping: "Spedizione gratuita",
     },
   ];
 
