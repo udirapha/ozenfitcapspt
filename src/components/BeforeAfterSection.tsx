@@ -4,7 +4,6 @@ const BeforeAfterSection = () => {
     "/images/result-2.jpeg",
     "/images/result-3.jpeg",
     "/images/result-4.jpeg",
-    "/images/result-5.jpeg",
   ];
 
   return (
