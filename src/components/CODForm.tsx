@@ -31,10 +31,19 @@ const CODForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const phoneDigits = formData.phone.replace(/\D/g, "");
+    if (phoneDigits.length < 6 || phoneDigits.length > 15) {
+      toast.error("Inserisci solo i numeri del telefono (senza prefisso).", {
+        description: "Esempio: 3461234567",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      const fullPhone = `${formData.countryCode}${formData.phone.replace(/\s+/g, '')}`;
+      const fullPhone = `${formData.countryCode}${phoneDigits}`;
       const { data, error } = await supabase.functions.invoke("create-cod-order", {
         body: {
           name: formData.name,
@@ -78,7 +87,15 @@ const CODForm = () => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    if (name === "phone") {
+      const digitsOnly = value.replace(/\D/g, "").slice(0, 15);
+      setFormData((prev) => ({ ...prev, phone: digitsOnly }));
+      return;
+    }
+
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
@@ -119,7 +136,7 @@ const CODForm = () => {
                 name="countryCode"
                 value={formData.countryCode}
                 onChange={handleChange}
-                className="w-[120px] flex-shrink-0 px-2 py-3 rounded-lg bg-background text-foreground text-sm border border-border focus:ring-2 focus:ring-primary focus:outline-none"
+                className="w-[126px] flex-shrink-0 px-2 py-3 rounded-lg bg-background text-foreground text-sm border border-border focus:ring-2 focus:ring-primary focus:outline-none"
                 disabled={isSubmitting}
               >
                 {COUNTRY_CODES.map((cc) => (
@@ -129,14 +146,16 @@ const CODForm = () => {
                 ))}
               </select>
               <input
-                type="tel"
+                type="text"
                 name="phone"
                 required
                 minLength={6}
                 maxLength={15}
+                inputMode="numeric"
+                pattern="[0-9]*"
                 value={formData.phone}
                 onChange={handleChange}
-                placeholder="3XX XXX XXXX"
+                placeholder="3461234567"
                 className="flex-1 px-4 py-3 rounded-lg bg-background text-foreground text-sm border border-border focus:ring-2 focus:ring-primary focus:outline-none"
                 disabled={isSubmitting}
               />
