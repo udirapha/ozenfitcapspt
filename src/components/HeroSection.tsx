@@ -1,10 +1,13 @@
 import { Flame, Utensils, Zap, ShieldCheck } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import productBundle from "@/assets/product-bundle.webp";
 import logo from "@/assets/logo-ozenfit.png";
 
+const UNLOCK_TIME_SECONDS = 7 * 60 + 30;
+
 const HeroSection = () => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [showCta, setShowCta] = useState(false);
 
   useEffect(() => {
     const s = document.createElement("script");
