@@ -28,6 +28,18 @@ const normalizePhone = (rawPhone: string) => {
   return `+${digits}`;
 };
 
+const getPhoneIssue = (errors: unknown) => {
+  if (!errors || typeof errors !== "object") return null;
+
+  const e = errors as {
+    customer?: { phone_number?: string[] };
+    shipping_address?: { phone?: string[] };
+    billing_address?: { phone?: string[] };
+  };
+
+  return e.customer?.phone_number?.[0] ?? e.shipping_address?.phone?.[0] ?? e.billing_address?.phone?.[0] ?? null;
+};
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
@@ -101,57 +113,76 @@ serve(async (req) => {
     const firstName = nameParts[0];
     const lastName = nameParts.slice(1).join(" ") || firstName;
 
-    const orderPayload = {
-      order: {
-        line_items: [
-          {
-            variant_id: variant.variantId,
-            quantity: 1,
-          },
-        ],
-        shipping_address: {
-          first_name: firstName,
-          last_name: lastName,
-          address1: address.trim(),
-          city: city.trim(),
-          zip: postalCode.trim(),
-          country: "IT",
-          phone: normalizedPhone,
+    const baseOrder = {
+      line_items: [
+        {
+          variant_id: variant.variantId,
+          quantity: 1,
         },
-        billing_address: {
-          first_name: firstName,
-          last_name: lastName,
-          address1: address.trim(),
-          city: city.trim(),
-          zip: postalCode.trim(),
-          country: "IT",
-          phone: normalizedPhone,
-        },
-        financial_status: "pending",
-        tags: "COD, landing-page",
-        note: `Ordine COD via Landing Page - ${variant.title}`,
-        send_receipt: false,
-        send_fulfillment_receipt: false,
+      ],
+      shipping_address: {
+        first_name: firstName,
+        last_name: lastName,
+        address1: address.trim(),
+        city: city.trim(),
+        zip: postalCode.trim(),
+        country: "IT",
       },
+      billing_address: {
+        first_name: firstName,
+        last_name: lastName,
+        address1: address.trim(),
+        city: city.trim(),
+        zip: postalCode.trim(),
+        country: "IT",
+      },
+      financial_status: "pending",
+      tags: "COD, landing-page",
+      note: `Ordine COD via Landing Page - ${variant.title} | Telefono: ${normalizedPhone}`,
+      send_receipt: false,
+      send_fulfillment_receipt: false,
     };
 
-    const response = await fetch(
-      `https://${SHOP_DOMAIN}/admin/api/${API_VERSION}/orders.json`,
-      {
+    const createOrder = async (payload: unknown) => {
+      const response = await fetch(`https://${SHOP_DOMAIN}/admin/api/${API_VERSION}/orders.json`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "X-Shopify-Access-Token": SHOPIFY_ACCESS_TOKEN,
         },
-        body: JSON.stringify(orderPayload),
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
+      return { response, data };
+    };
+
+    // First attempt: include phone in addresses
+    let result = await createOrder({
+      order: {
+        ...baseOrder,
+        shipping_address: {
+          ...baseOrder.shipping_address,
+          phone: normalizedPhone,
+        },
+        billing_address: {
+          ...baseOrder.billing_address,
+          phone: normalizedPhone,
+        },
       },
-    );
+    });
 
-    const data = await response.json();
+    // Fallback: if phone is rejected by Shopify, retry without structured phone fields
+    if (!result.response.ok && getPhoneIssue(result.data?.errors)) {
+      result = await createOrder({
+        order: {
+          ...baseOrder,
+        },
+      });
+    }
 
-    if (!response.ok) {
-      const details = data?.errors;
-      const phoneError = details?.customer?.phone_number?.[0] || details?.shipping_address?.phone?.[0] || details?.billing_address?.phone?.[0];
+    if (!result.response.ok) {
+      const phoneError = getPhoneIssue(result.data?.errors);
 
       if (phoneError) {
         return new Response(
@@ -160,9 +191,9 @@ serve(async (req) => {
         );
       }
 
-      console.error("Shopify order creation failed:", JSON.stringify(data));
+      console.error("Shopify order creation failed:", JSON.stringify(result.data));
       return new Response(
-        JSON.stringify({ error: "Erro ao criar pedido na Shopify", details: data.errors }),
+        JSON.stringify({ error: "Erro ao criar pedido na Shopify", details: result.data?.errors }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
       );
     }
@@ -170,8 +201,8 @@ serve(async (req) => {
     return new Response(
       JSON.stringify({
         success: true,
-        orderNumber: data.order?.order_number,
-        orderId: data.order?.id,
+        orderNumber: result.data.order?.order_number,
+        orderId: result.data.order?.id,
       }),
       { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } },
     );
