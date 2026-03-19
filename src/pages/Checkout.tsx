@@ -65,7 +65,7 @@ const Checkout = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <HeroSectionCheckout />
+      <HeroSectionCheckout contentUnlocked={contentUnlocked} />
 
       <div
         className={`transition-all duration-700 ${
