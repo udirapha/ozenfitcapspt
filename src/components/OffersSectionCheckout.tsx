@@ -92,6 +92,12 @@ const OffersSectionCheckout = () => {
                 >
                   COMPRA ORA 🔥
                 </a>
+                {o.priceNote && (
+                  <div className="flex items-center justify-center gap-2 mt-2">
+                    <img src={klarnaLogo} alt="Klarna" className="h-5 w-auto" />
+                    <span className="text-xs text-muted-foreground font-semibold">{o.priceNote}</span>
+                  </div>
+                )}
                 <p className="text-xs text-center text-primary font-bold mt-2">💳 Pagamento sicuro online!</p>
                 <p className="text-xs text-center text-muted-foreground mt-3">{o.shipping}</p>
               </div>
