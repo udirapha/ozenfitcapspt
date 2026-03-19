@@ -58,6 +58,10 @@ const OffersSectionCheckout = () => {
             Acquisto 100% Sicuro — Pagamento Online!
           </span>
         </div>
+        <div className="flex items-center justify-center gap-3 mb-6 bg-card border border-border rounded-lg py-2.5 px-4 max-w-md mx-auto">
+          <img src={klarnaLogo} alt="Klarna" className="h-7 w-auto" />
+          <span className="text-sm font-semibold text-foreground">Paga in 3 rate senza interessi con Klarna!</span>
+        </div>
         <h2 className="font-heading text-2xl md:text-3xl font-bold text-center text-foreground mb-2">
           Scegli il <span className="text-primary">MIGLIOR TRATTAMENTO</span> per te!
         </h2>
