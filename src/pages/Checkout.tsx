@@ -22,6 +22,7 @@ const Checkout = () => {
   useEffect(() => {
     if (contentUnlocked) return;
 
+    const pageLoadTime = Date.now();
     const unlockContent = () => setContentUnlocked(true);
 
     const handleMessage = (event: MessageEvent) => {
@@ -33,6 +34,12 @@ const Checkout = () => {
     window.addEventListener("message", handleMessage);
 
     const interval = window.setInterval(() => {
+      // Fallback: tempo na página
+      const elapsedSeconds = (Date.now() - pageLoadTime) / 1000;
+      if (elapsedSeconds >= UNLOCK_TIME_SECONDS) {
+        unlockContent();
+        return;
+      }
       if (shouldUnlockFromSmartplayer(UNLOCK_TIME_SECONDS)) {
         unlockContent();
       }
