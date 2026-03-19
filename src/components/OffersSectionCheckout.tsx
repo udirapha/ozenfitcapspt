@@ -1,6 +1,7 @@
 import offer1 from "@/assets/offer-1-bottle.png";
 import offer3 from "@/assets/offer-3-bottles.png";
 import offer5 from "@/assets/offer-5-bottles.png";
+import klarnaLogo from "@/assets/logo-klarna.png";
 
 const CHECKOUT_LINKS: Record<string, string> = {
   "1pote": "https://1ievzb-tk.myshopify.com/cart/52816771678544:1?channel=buy_button",
