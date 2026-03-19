@@ -56,11 +56,11 @@ const BeforeAfterSection = () => {
   return (
     <section className="section-alt py-12 md:py-16 px-4">
       <div className="container max-w-6xl mx-auto">
-        <h2 className="font-heading text-2xl md:text-3xl font-bold text-center text-foreground mb-3">
-          Avaliações <span className="text-primary">REAIS</span> de Quem Usou e Aprovou
+         <h2 className="font-heading text-2xl md:text-3xl font-bold text-center text-foreground mb-3">
+          Recensioni <span className="text-primary">REALI</span> di Chi l'Ha Già Provato
         </h2>
         <p className="text-center text-muted-foreground mb-10 text-sm">
-          Depoimentos de clientes satisfeitos com OZENFIT CAPS.
+          Testimonianze di clienti soddisfatti con OZENFIT CAPS.
         </p>
 
         <Carousel
