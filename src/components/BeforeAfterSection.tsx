@@ -67,7 +67,7 @@ const BeforeAfterSection = () => {
           setApi={setApi}
           opts={{ align: "start", loop: true }}
           className="w-full"
-          aria-label="Depoimentos de clientes"
+          aria-label="Testimonianze dei clienti"
         >
           <CarouselContent>
             {testimonials.map((testimonial, index) => (
