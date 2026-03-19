@@ -2,6 +2,7 @@ import { Flame, Utensils, Zap, ShieldCheck } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import productBundle from "@/assets/product-bundle.webp";
 import logo from "@/assets/logo-ozenfit.png";
+import { shouldUnlockFromPayload, shouldUnlockFromSmartplayer } from "@/lib/vsl-unlock";
 
 const UNLOCK_TIME_SECONDS = 7 * 60 + 30;
 
@@ -23,31 +24,26 @@ const HeroSection = () => {
         encodeURIComponent(location.href);
     }
 
-    // Listen for smartplayer time to show CTA
     const handleMessage = (event: MessageEvent) => {
-      try {
-        const data = typeof event.data === "string" ? JSON.parse(event.data) : event.data;
-        const time = data?.currentTime || data?.time || 0;
-        if (time >= UNLOCK_TIME_SECONDS) setShowCta(true);
-      } catch {}
+      if (shouldUnlockFromPayload(event.data, UNLOCK_TIME_SECONDS)) {
+        setShowCta(true);
+      }
     };
+
     window.addEventListener("message", handleMessage);
 
-    const interval = setInterval(() => {
-      try {
-        const players = (window as any).smartplayer?.instances;
-        if (players?.[0]) {
-          const p = players[0];
-          const t = p.smartAutoPlay?.currentTime || p.video?.currentTime || p.currentTime || 0;
-          if (t >= UNLOCK_TIME_SECONDS) setShowCta(true);
-        }
-      } catch {}
+    const interval = window.setInterval(() => {
+      if (shouldUnlockFromSmartplayer(UNLOCK_TIME_SECONDS)) {
+        setShowCta(true);
+      }
     }, 1000);
 
     return () => {
-      try { document.head.removeChild(s); } catch {}
+      try {
+        document.head.removeChild(s);
+      } catch {}
       window.removeEventListener("message", handleMessage);
-      clearInterval(interval);
+      window.clearInterval(interval);
     };
   }, []);
 

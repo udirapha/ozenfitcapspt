@@ -12,6 +12,7 @@ import OffersSectionCheckout from "@/components/OffersSectionCheckout";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQSection from "@/components/FAQSection";
 import FooterSection from "@/components/FooterSection";
+import { shouldUnlockFromPayload, shouldUnlockFromSmartplayer } from "@/lib/vsl-unlock";
 
 const UNLOCK_TIME_SECONDS = 7 * 60 + 30; // 7:30
 
@@ -21,45 +22,25 @@ const Checkout = () => {
   useEffect(() => {
     if (contentUnlocked) return;
 
-    const handleMessage = (event: MessageEvent) => {
-      try {
-        const data = typeof event.data === "string" ? JSON.parse(event.data) : event.data;
+    const unlockContent = () => setContentUnlocked(true);
 
-        if (data?.type === "player_event" && data?.event === "timeupdate") {
-          if (data.currentTime >= UNLOCK_TIME_SECONDS) setContentUnlocked(true);
-        }
-        if (data?.event === "smartplayer_timeupdate" || data?.eventName === "timeupdate") {
-          const time = data?.currentTime || data?.time || 0;
-          if (time >= UNLOCK_TIME_SECONDS) setContentUnlocked(true);
-        }
-        if (typeof event.data === "string" && event.data.includes("smartplayer")) {
-          const parsed = JSON.parse(event.data);
-          if (parsed?.currentTime >= UNLOCK_TIME_SECONDS) setContentUnlocked(true);
-        }
-      } catch {}
+    const handleMessage = (event: MessageEvent) => {
+      if (shouldUnlockFromPayload(event.data, UNLOCK_TIME_SECONDS)) {
+        unlockContent();
+      }
     };
 
     window.addEventListener("message", handleMessage);
 
-    const interval = setInterval(() => {
-      try {
-        const players = (window as any).smartplayer?.instances;
-        if (players && players.length > 0) {
-          const player = players[0];
-          if (
-            player.smartAutoPlay?.currentTime >= UNLOCK_TIME_SECONDS ||
-            player.video?.currentTime >= UNLOCK_TIME_SECONDS ||
-            player.currentTime >= UNLOCK_TIME_SECONDS
-          ) {
-            setContentUnlocked(true);
-          }
-        }
-      } catch {}
+    const interval = window.setInterval(() => {
+      if (shouldUnlockFromSmartplayer(UNLOCK_TIME_SECONDS)) {
+        unlockContent();
+      }
     }, 1000);
 
     return () => {
       window.removeEventListener("message", handleMessage);
-      clearInterval(interval);
+      window.clearInterval(interval);
     };
   }, [contentUnlocked]);
 
