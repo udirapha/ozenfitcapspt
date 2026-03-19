@@ -1,0 +1,122 @@
+import offer1 from "@/assets/offer-1-bottle.png";
+import offer3 from "@/assets/offer-3-bottles.png";
+import offer5 from "@/assets/offer-5-bottles.png";
+
+const CHECKOUT_LINKS: Record<string, string> = {
+  "1pote": "https://1ievzb-tk.myshopify.com/cart/52816771678544:1?channel=buy_button",
+  "3potes": "https://1ievzb-tk.myshopify.com/cart/52816771711312:1?channel=buy_button",
+  "5potes": "https://1ievzb-tk.myshopify.com/cart/52816771744080:1?channel=buy_button",
+};
+
+const OffersSectionCheckout = () => {
+  const offers = [
+    {
+      featured: true,
+      label: "IL PIÙ VENDUTO",
+      title: "TRATTAMENTO 5 MESI",
+      subtitle: "PAGA 3 E RICEVI 5! + E-book",
+      image: offer5,
+      price: "€119,90",
+      priceNote: "o 3x di €39,97",
+      originalPrice: "€199,50",
+      shipping: "Spedizione gratuita",
+      checkoutKey: "5potes",
+    },
+    {
+      featured: false,
+      label: "",
+      title: "TRATTAMENTO 3 MESI",
+      subtitle: "PAGA 2 E RICEVI 3! + E-book",
+      image: offer3,
+      price: "€89,90",
+      priceNote: "o 3x di €29,97",
+      originalPrice: "€119,70",
+      shipping: "Spedizione gratuita",
+      checkoutKey: "3potes",
+    },
+    {
+      featured: false,
+      label: "",
+      title: "TRATTAMENTO 1 MESE",
+      subtitle: "Per provare RICEVI 1!",
+      image: offer1,
+      price: "€39,90",
+      priceNote: "",
+      originalPrice: "€59,90",
+      shipping: "Spedizione gratuita",
+      checkoutKey: "1pote",
+    },
+  ];
+
+  return (
+    <section id="prezzo" className="bg-background py-12 md:py-16 px-4">
+      <div className="container max-w-4xl mx-auto">
+        <div className="flex items-center justify-center gap-2 mb-4">
+          <span className="text-lg">🔒</span>
+          <span className="font-heading font-bold text-sm md:text-base text-primary uppercase tracking-wide">
+            Acquisto 100% Sicuro — Pagamento Online!
+          </span>
+        </div>
+        <h2 className="font-heading text-2xl md:text-3xl font-bold text-center text-foreground mb-2">
+          Scegli il <span className="text-primary">MIGLIOR TRATTAMENTO</span> per te!
+        </h2>
+        <p className="text-center text-muted-foreground mb-10 text-sm">
+          Inizia oggi stesso a dimagrire con salute. Pagamento sicuro online!
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
+          {offers.map((o, i) => (
+            <div key={i} className={`card-offer ${o.featured ? "card-offer-featured" : ""} flex flex-col`}>
+              {o.featured && (
+                <div className="badge-featured text-center py-2 text-xs font-bold uppercase tracking-wider">
+                  {o.label}
+                </div>
+              )}
+              <div className="p-5 flex flex-col flex-1">
+                <h3 className="font-heading font-bold text-foreground text-center text-sm mb-1">{o.title}</h3>
+                <p className="font-heading text-primary text-center text-xs font-semibold mb-4">{o.subtitle}</p>
+                <div className="flex justify-center mb-4">
+                  <img src={o.image} alt={o.title} className="w-28 h-28 object-contain" />
+                </div>
+                <div className="text-center mb-4 mt-auto">
+                  <p className="text-xs text-muted-foreground line-through">{o.originalPrice}</p>
+                  <p className="font-heading text-2xl font-black text-primary">{o.price}</p>
+                  {o.priceNote && <p className="text-xs text-muted-foreground">{o.priceNote}</p>}
+                </div>
+                <a
+                  href={CHECKOUT_LINKS[o.checkoutKey]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-cta w-full text-center text-sm py-3"
+                >
+                  COMPRA ORA 🔥
+                </a>
+                <p className="text-xs text-center text-primary font-bold mt-2">💳 Pagamento sicuro online!</p>
+                <p className="text-xs text-center text-muted-foreground mt-3">{o.shipping}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Trust badges */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-xl mx-auto">
+          {[
+            { icon: "🔒", text: "Acquisto Sicuro" },
+            { icon: "✅", text: "Soddisfazione Garantita" },
+            { icon: "🚚", text: "Consegna 24-72h in Italia" },
+            { icon: "🔐", text: "Privacy Protetta" },
+            { icon: "💳", text: "Pagamento Sicuro Online" },
+            { icon: "🛡️", text: "Sito 100% Sicuro" },
+          ].map((badge, i) => (
+            <div key={i} className="flex items-center gap-2 text-xs text-muted-foreground">
+              <span className="text-lg">{badge.icon}</span>
+              <span className="font-semibold">{badge.text}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default OffersSectionCheckout;
