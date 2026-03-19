@@ -12,34 +12,34 @@ const BeforeAfterSection = () => {
 
   const testimonials = [
     {
-      name: "Carla Mendes",
+      name: "Sofia Rossi",
       age: 36,
-      text: "Usei por algumas semanas e senti diferença real no inchaço e na disposição. Já comprei novamente.",
+      text: "L'ho usato per alcune settimane e ho sentito una differenza reale nel gonfiore e nell'energia. Ho già riordinato!",
     },
     {
-      name: "Renata Lima",
+      name: "Elena Bianchi",
       age: 41,
-      text: "Produto excelente, chegou rápido e me ajudou muito com a sensação de barriga pesada.",
+      text: "Prodotto eccellente, arrivato velocissimo e mi ha aiutato tantissimo con la sensazione di pancia pesante.",
     },
     {
-      name: "Patrícia Souza",
+      name: "Francesca Moretti",
       age: 33,
-      text: "Fiquei surpresa com o resultado. Me senti mais leve e com mais confiança no dia a dia.",
+      text: "Sono rimasta sorpresa dal risultato. Mi sento più leggera e con più fiducia nella vita quotidiana.",
     },
     {
-      name: "Mariana Costa",
+      name: "Giulia Colombo",
       age: 39,
-      text: "Gostei bastante! Cumpriu o que promete e o atendimento foi ótimo do início ao fim.",
+      text: "Mi è piaciuto molto! Ha mantenuto le promesse e il servizio clienti è stato ottimo dall'inizio alla fine.",
     },
     {
-      name: "Luciana Alves",
+      name: "Laura Ferretti",
       age: 45,
-      text: "Resultado visível para mim, principalmente na rotina após as refeições. Recomendo demais.",
+      text: "Risultato visibile, soprattutto nella routine dopo i pasti. Lo consiglio tantissimo a tutti!",
     },
     {
-      name: "Fernanda Rocha",
+      name: "Chiara Romano",
       age: 37,
-      text: "Já testei outros e esse foi o melhor. Me adaptei super bem e pretendo continuar usando.",
+      text: "Ho provato altri prodotti e questo è il migliore. Mi sono adattata benissimo e intendo continuare ad usarlo.",
     },
   ];
 
