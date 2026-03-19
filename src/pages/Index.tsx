@@ -13,6 +13,7 @@ import CODForm from "@/components/CODForm";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQSection from "@/components/FAQSection";
 import FooterSection from "@/components/FooterSection";
+import { shouldUnlockFromPayload, shouldUnlockFromSmartplayer } from "@/lib/vsl-unlock";
 
 const UNLOCK_TIME_SECONDS = 7 * 60 + 30; // 7:30
 
@@ -20,62 +21,27 @@ const Index = () => {
   const [contentUnlocked, setContentUnlocked] = useState(false);
 
   useEffect(() => {
-    // Listen for ConverteAI smartplayer time events
+    if (contentUnlocked) return;
+
+    const unlockContent = () => setContentUnlocked(true);
+
     const handleMessage = (event: MessageEvent) => {
-      if (contentUnlocked) return;
-
-      try {
-        // ConverteAI sends postMessage with player events
-        const data = typeof event.data === "string" ? JSON.parse(event.data) : event.data;
-        
-        // Check for time update events from smartplayer
-        if (data?.type === "player_event" && data?.event === "timeupdate") {
-          if (data.currentTime >= UNLOCK_TIME_SECONDS) {
-            setContentUnlocked(true);
-          }
-        }
-        
-        // Alternative event format from ConverteAI
-        if (data?.event === "smartplayer_timeupdate" || data?.eventName === "timeupdate") {
-          const time = data?.currentTime || data?.time || 0;
-          if (time >= UNLOCK_TIME_SECONDS) {
-            setContentUnlocked(true);
-          }
-        }
-
-        // Generic smartplayer event format
-        if (typeof event.data === "string" && event.data.includes("smartplayer")) {
-          const parsed = JSON.parse(event.data);
-          if (parsed?.currentTime >= UNLOCK_TIME_SECONDS) {
-            setContentUnlocked(true);
-          }
-        }
-      } catch {
-        // Not a JSON message, ignore
+      if (shouldUnlockFromPayload(event.data, UNLOCK_TIME_SECONDS)) {
+        unlockContent();
       }
     };
 
     window.addEventListener("message", handleMessage);
 
-    // Fallback: also check via smartplayer global API
-    const interval = setInterval(() => {
-      if (contentUnlocked) return;
-      try {
-        const players = (window as any).smartplayer?.instances;
-        if (players && players.length > 0) {
-          const player = players[0];
-          if (player.smartAutoPlay?.currentTime >= UNLOCK_TIME_SECONDS || 
-              player.video?.currentTime >= UNLOCK_TIME_SECONDS ||
-              player.currentTime >= UNLOCK_TIME_SECONDS) {
-            setContentUnlocked(true);
-          }
-        }
-      } catch {}
+    const interval = window.setInterval(() => {
+      if (shouldUnlockFromSmartplayer(UNLOCK_TIME_SECONDS)) {
+        unlockContent();
+      }
     }, 1000);
 
     return () => {
       window.removeEventListener("message", handleMessage);
-      clearInterval(interval);
+      window.clearInterval(interval);
     };
   }, [contentUnlocked]);
 
