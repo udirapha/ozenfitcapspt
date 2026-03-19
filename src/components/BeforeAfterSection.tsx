@@ -79,9 +79,9 @@ const BeforeAfterSection = () => {
                     </div>
                     <div>
                       <p className="font-heading font-bold text-foreground text-sm">
-                        {testimonial.name}, {testimonial.age} anos
+                        {testimonial.name}, {testimonial.age} anni
                       </p>
-                      <p className="text-xs text-primary font-semibold">Compra verificada ✓</p>
+                      <p className="text-xs text-primary font-semibold">Acquisto verificato ✓</p>
                     </div>
                   </div>
 
