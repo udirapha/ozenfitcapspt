@@ -1,10 +1,10 @@
+import result1 from "@/assets/result-1.jpeg";
+import result2 from "@/assets/result-2.jpeg";
+import result3 from "@/assets/result-3.jpeg";
+import result4 from "@/assets/result-4.jpeg";
+
 const BeforeAfterSection = () => {
-  const results = [
-    "/images/result-1.jpeg",
-    "/images/result-2.jpeg",
-    "/images/result-3.jpeg",
-    "/images/result-4.jpeg",
-  ];
+  const results = [result1, result2, result3, result4];
 
   return (
     <section className="section-alt py-12 md:py-16 px-4">
@@ -24,6 +24,11 @@ const BeforeAfterSection = () => {
                 alt={`Risultato OzenFit Caps ${i + 1}`}
                 className="w-full h-auto"
                 loading="lazy"
+                onError={(event) => {
+                  if (event.currentTarget.dataset.fallbackApplied) return;
+                  event.currentTarget.dataset.fallbackApplied = "true";
+                  event.currentTarget.src = "/placeholder.svg";
+                }}
               />
             </div>
           ))}
