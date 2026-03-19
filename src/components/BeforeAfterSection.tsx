@@ -103,9 +103,9 @@ const BeforeAfterSection = () => {
 
         <div className="text-center mt-10">
           <a href="#prezzo" className="btn-cta pulse-animation">
-            QUERO COMEÇAR AGORA
+            VOGLIO PROVARLO ADESSO! 🔥
           </a>
-          <p className="mt-3 text-sm font-semibold text-muted-foreground">💰 Pagamento só na entrega!</p>
+          <p className="mt-3 text-sm font-semibold text-muted-foreground">💰 Pagamento solo alla consegna!</p>
         </div>
       </div>
     </section>
