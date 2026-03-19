@@ -1,6 +1,7 @@
 import offer1 from "@/assets/offer-1-bottle.png";
 import offer3 from "@/assets/offer-3-bottles.png";
 import offer5 from "@/assets/offer-5-bottles.png";
+import klarnaLogo from "@/assets/logo-klarna.png";
 
 const CHECKOUT_LINKS: Record<string, string> = {
   "1pote": "https://1ievzb-tk.myshopify.com/cart/52816771678544:1?channel=buy_button",
@@ -57,6 +58,10 @@ const OffersSectionCheckout = () => {
             Acquisto 100% Sicuro — Pagamento Online!
           </span>
         </div>
+        <div className="flex items-center justify-center gap-3 mb-6 bg-card border border-border rounded-lg py-2.5 px-4 max-w-md mx-auto">
+          <img src={klarnaLogo} alt="Klarna" className="h-7 w-auto" />
+          <span className="text-sm font-semibold text-foreground">Paga in 3 rate senza interessi con Klarna!</span>
+        </div>
         <h2 className="font-heading text-2xl md:text-3xl font-bold text-center text-foreground mb-2">
           Scegli il <span className="text-primary">MIGLIOR TRATTAMENTO</span> per te!
         </h2>
@@ -91,6 +96,12 @@ const OffersSectionCheckout = () => {
                 >
                   COMPRA ORA 🔥
                 </a>
+                {o.priceNote && (
+                  <div className="flex items-center justify-center gap-2 mt-2">
+                    <img src={klarnaLogo} alt="Klarna" className="h-5 w-auto" />
+                    <span className="text-xs text-muted-foreground font-semibold">{o.priceNote}</span>
+                  </div>
+                )}
                 <p className="text-xs text-center text-primary font-bold mt-2">💳 Pagamento sicuro online!</p>
                 <p className="text-xs text-center text-muted-foreground mt-3">{o.shipping}</p>
               </div>
