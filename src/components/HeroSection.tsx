@@ -1,14 +1,10 @@
 import { Flame, Utensils, Zap, ShieldCheck } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import productBundle from "@/assets/product-bundle.webp";
 import logo from "@/assets/logo-ozenfit.png";
-import { shouldUnlockFromPayload, shouldUnlockFromSmartplayer } from "@/lib/vsl-unlock";
-
-const UNLOCK_TIME_SECONDS = 7 * 60 + 30;
 
 const HeroSection = () => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [showCta, setShowCta] = useState(false);
 
   useEffect(() => {
     const s = document.createElement("script");
@@ -24,32 +20,13 @@ const HeroSection = () => {
         encodeURIComponent(location.href);
     }
 
-    const handleMessage = (event: MessageEvent) => {
-      if (shouldUnlockFromPayload(event.data, UNLOCK_TIME_SECONDS)) {
-        setShowCta(true);
-      }
-    };
-
-    window.addEventListener("message", handleMessage);
-
-    const interval = window.setInterval(() => {
-      if (shouldUnlockFromSmartplayer(UNLOCK_TIME_SECONDS)) {
-        setShowCta(true);
-      }
-    }, 1000);
-
     return () => {
-      try {
-        document.head.removeChild(s);
-      } catch {}
-      window.removeEventListener("message", handleMessage);
-      window.clearInterval(interval);
+      try { document.head.removeChild(s); } catch {}
     };
   }, []);
 
   return (
     <>
-      {/* Urgency bars */}
       <div className="urgency-bar text-center py-2.5 px-4 text-sm md:text-base font-bold">
         ⚠️ ATTENZIONE: A causa dell'elevata domanda, le nostre capsule OZENFIT CAPS stanno per esaurirsi! ULTIME UNITÀ!
       </div>
@@ -57,15 +34,10 @@ const HeroSection = () => {
         ATTENZIONE: Questo prodotto sta per esaurirsi, per questo hai un'offerta speciale solo oggi!
       </div>
 
-      {/* Hero */}
       <section className="bg-background py-8 md:py-16 px-4">
         <div className="container max-w-4xl mx-auto text-center">
           <div className="flex justify-center mb-6">
-            <img
-              src={logo}
-              alt="OzenFit Caps"
-              className="w-48 md:w-72 h-auto"
-            />
+            <img src={logo} alt="OzenFit Caps" className="w-48 md:w-72 h-auto" />
           </div>
           <h1 className="font-heading text-3xl md:text-5xl font-black text-foreground leading-tight mb-4">
             IL POTERE DELL'OZEMPIC <span className="text-primary">IN CAPSULE.</span>
@@ -74,84 +46,66 @@ const HeroSection = () => {
             Basta spendere fortune in iniezioni e soffrire ancora dell'effetto yo-yo.
           </p>
 
-          {/* VSL Video */}
           <div className="max-w-[720px] mx-auto mb-10">
             <div className="rounded-xl overflow-hidden shadow-lg">
-              <div
-                id="ifr_69bae2c3acddada823a59520_wrapper"
-                style={{ margin: "0 auto", width: "100%" }}
-              >
-                <div
-                  style={{ position: "relative", padding: "56.25% 0 0 0" }}
-                  id="ifr_69bae2c3acddada823a59520_aspect"
-                >
+              <div id="ifr_69bae2c3acddada823a59520_wrapper" style={{ margin: "0 auto", width: "100%" }}>
+                <div style={{ position: "relative", padding: "56.25% 0 0 0" }} id="ifr_69bae2c3acddada823a59520_aspect">
                   <iframe
                     ref={iframeRef}
                     frameBorder="0"
                     allowFullScreen
                     src="about:blank"
                     id="ifr_69bae2c3acddada823a59520"
-                    style={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      width: "100%",
-                      height: "100%",
-                    }}
+                    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
                     referrerPolicy="origin"
                   />
                 </div>
               </div>
             </div>
-            <div className={`transition-all duration-700 ${showCta ? "opacity-100 max-h-[2000px]" : "opacity-0 max-h-0 overflow-hidden pointer-events-none"}`}>
-              <div className="text-center mt-6">
-                <a href="#prezzo" className="btn-cta pulse-animation text-base md:text-lg">
-                  VOGLIO PROVARLO ORA! 🔥
-                </a>
-                <p className="mt-3 text-sm font-semibold text-muted-foreground flex items-center justify-center gap-1.5">
-                  💰 Paghi solo alla consegna!
-                </p>
-              </div>
+            <div className="text-center mt-6">
+              <a href="#prezzo" className="btn-cta pulse-animation text-base md:text-lg">
+                VOGLIO PROVARLO ORA! 🔥
+              </a>
+              <p className="mt-3 text-sm font-semibold text-muted-foreground flex items-center justify-center gap-1.5">
+                💰 Paghi solo alla consegna!
+              </p>
             </div>
           </div>
 
-          <div className={`transition-all duration-700 ${showCta ? "opacity-100 max-h-[2000px]" : "opacity-0 max-h-0 overflow-hidden pointer-events-none"}`}>
-            <div className="flex justify-center mb-8">
-              <img
-                src={productBundle}
-                alt="OzenFit Caps - Integratore per dimagrire"
-                className="w-56 md:w-80 float-animation"
-              />
-            </div>
+          <div className="flex justify-center mb-8">
+            <img
+              src={productBundle}
+              alt="OzenFit Caps - Integratore per dimagrire"
+              className="w-56 md:w-80 float-animation"
+            />
+          </div>
 
-            {/* Benefits quick list */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto mb-8 text-left">
-              {[
-                { icon: Flame, text: "Brucia calorie senza esercizi costanti" },
-                { icon: Utensils, text: "Riduce la voglia di mangiare e aumenta la sazietà" },
-                { icon: Zap, text: "Migliora il funzionamento dell'intestino" },
-                { icon: ShieldCheck, text: "100% naturale, senza effetti collaterali" },
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-success-light flex items-center justify-center">
-                    <item.icon className="w-5 h-5 text-primary" />
-                  </div>
-                  <span className="text-sm font-semibold text-foreground">{item.text}</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto mb-8 text-left">
+            {[
+              { icon: Flame, text: "Brucia calorie senza esercizi costanti" },
+              { icon: Utensils, text: "Riduce la voglia di mangiare e aumenta la sazietà" },
+              { icon: Zap, text: "Migliora il funzionamento dell'intestino" },
+              { icon: ShieldCheck, text: "100% naturale, senza effetti collaterali" },
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-3">
+                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-success-light flex items-center justify-center">
+                  <item.icon className="w-5 h-5 text-primary" />
                 </div>
-              ))}
-            </div>
-
-            <p className="font-heading text-lg md:text-xl font-bold text-foreground mb-6">
-              SENZA DIETE ESTREME O ESERCIZI FISICI
-            </p>
-
-            <a href="#prezzo" className="btn-cta pulse-animation text-base md:text-lg">
-              VOGLIO PROVARLO! 🔥
-            </a>
-            <p className="mt-3 text-sm font-semibold text-muted-foreground flex items-center justify-center gap-1.5">
-              📦 Pagamento alla consegna — Non paghi nulla adesso!
-            </p>
+                <span className="text-sm font-semibold text-foreground">{item.text}</span>
+              </div>
+            ))}
           </div>
+
+          <p className="font-heading text-lg md:text-xl font-bold text-foreground mb-6">
+            SENZA DIETE ESTREME O ESERCIZI FISICI
+          </p>
+
+          <a href="#prezzo" className="btn-cta pulse-animation text-base md:text-lg">
+            VOGLIO PROVARLO! 🔥
+          </a>
+          <p className="mt-3 text-sm font-semibold text-muted-foreground flex items-center justify-center gap-1.5">
+            📦 Pagamento alla consegna — Non paghi nulla adesso!
+          </p>
         </div>
       </section>
     </>
