@@ -12,34 +12,34 @@ const BeforeAfterSection = () => {
 
   const testimonials = [
     {
-      name: "Carla Mendes",
+      name: "Sofia Rossi",
       age: 36,
-      text: "Usei por algumas semanas e senti diferença real no inchaço e na disposição. Já comprei novamente.",
+      text: "L'ho usato per alcune settimane e ho sentito una differenza reale nel gonfiore e nell'energia. Ho già riordinato!",
     },
     {
-      name: "Renata Lima",
+      name: "Elena Bianchi",
       age: 41,
-      text: "Produto excelente, chegou rápido e me ajudou muito com a sensação de barriga pesada.",
+      text: "Prodotto eccellente, arrivato velocissimo e mi ha aiutato tantissimo con la sensazione di pancia pesante.",
     },
     {
-      name: "Patrícia Souza",
+      name: "Francesca Moretti",
       age: 33,
-      text: "Fiquei surpresa com o resultado. Me senti mais leve e com mais confiança no dia a dia.",
+      text: "Sono rimasta sorpresa dal risultato. Mi sento più leggera e con più fiducia nella vita quotidiana.",
     },
     {
-      name: "Mariana Costa",
+      name: "Giulia Colombo",
       age: 39,
-      text: "Gostei bastante! Cumpriu o que promete e o atendimento foi ótimo do início ao fim.",
+      text: "Mi è piaciuto molto! Ha mantenuto le promesse e il servizio clienti è stato ottimo dall'inizio alla fine.",
     },
     {
-      name: "Luciana Alves",
+      name: "Laura Ferretti",
       age: 45,
-      text: "Resultado visível para mim, principalmente na rotina após as refeições. Recomendo demais.",
+      text: "Risultato visibile, soprattutto nella routine dopo i pasti. Lo consiglio tantissimo a tutti!",
     },
     {
-      name: "Fernanda Rocha",
+      name: "Chiara Romano",
       age: 37,
-      text: "Já testei outros e esse foi o melhor. Me adaptei super bem e pretendo continuar usando.",
+      text: "Ho provato altri prodotti e questo è il migliore. Mi sono adattata benissimo e intendo continuare ad usarlo.",
     },
   ];
 
@@ -56,18 +56,18 @@ const BeforeAfterSection = () => {
   return (
     <section className="section-alt py-12 md:py-16 px-4">
       <div className="container max-w-6xl mx-auto">
-        <h2 className="font-heading text-2xl md:text-3xl font-bold text-center text-foreground mb-3">
-          Avaliações <span className="text-primary">REAIS</span> de Quem Usou e Aprovou
+         <h2 className="font-heading text-2xl md:text-3xl font-bold text-center text-foreground mb-3">
+          Recensioni <span className="text-primary">REALI</span> di Chi l'Ha Già Provato
         </h2>
         <p className="text-center text-muted-foreground mb-10 text-sm">
-          Depoimentos de clientes satisfeitos com OZENFIT CAPS.
+          Testimonianze di clienti soddisfatti con OZENFIT CAPS.
         </p>
 
         <Carousel
           setApi={setApi}
           opts={{ align: "start", loop: true }}
           className="w-full"
-          aria-label="Depoimentos de clientes"
+          aria-label="Testimonianze dei clienti"
         >
           <CarouselContent>
             {testimonials.map((testimonial, index) => (
@@ -79,9 +79,9 @@ const BeforeAfterSection = () => {
                     </div>
                     <div>
                       <p className="font-heading font-bold text-foreground text-sm">
-                        {testimonial.name}, {testimonial.age} anos
+                        {testimonial.name}, {testimonial.age} anni
                       </p>
-                      <p className="text-xs text-primary font-semibold">Compra verificada ✓</p>
+                      <p className="text-xs text-primary font-semibold">Acquisto verificato ✓</p>
                     </div>
                   </div>
 
@@ -103,9 +103,9 @@ const BeforeAfterSection = () => {
 
         <div className="text-center mt-10">
           <a href="#prezzo" className="btn-cta pulse-animation">
-            QUERO COMEÇAR AGORA
+            VOGLIO PROVARLO ADESSO! 🔥
           </a>
-          <p className="mt-3 text-sm font-semibold text-muted-foreground">💰 Pagamento só na entrega!</p>
+          <p className="mt-3 text-sm font-semibold text-muted-foreground">💰 Pagamento solo alla consegna!</p>
         </div>
       </div>
     </section>
