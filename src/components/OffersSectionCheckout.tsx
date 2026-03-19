@@ -42,7 +42,7 @@ const OffersSectionCheckout = () => {
       subtitle: "Per provare RICEVI 1!",
       image: offer1,
       price: "€39,90",
-      priceNote: "",
+      priceNote: "o 3x di €13,30",
       originalPrice: "€59,90",
       shipping: "Spedizione gratuita",
       checkoutKey: "1pote",
