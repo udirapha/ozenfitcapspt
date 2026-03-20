@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import productBundle from "@/assets/product-bundle.webp";
 import logo from "@/assets/logo-ozenfit.png";
 
-const HeroSectionCheckout = () => {
+const HeroSectionCheckout = ({ contentVisible = true }: { contentVisible?: boolean }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
@@ -61,7 +61,7 @@ const HeroSectionCheckout = () => {
                 </div>
               </div>
             </div>
-            <div className="text-center mt-6">
+            <div className={`text-center mt-6 transition-all duration-700 ${contentVisible ? "opacity-100" : "opacity-0 max-h-0 overflow-hidden"}`}>
               <a href="#prezzo" className="btn-cta pulse-animation text-base md:text-lg">
                 VOGLIO PROVARLO ORA! 🔥
               </a>
@@ -71,40 +71,44 @@ const HeroSectionCheckout = () => {
             </div>
           </div>
 
-          <div className="flex justify-center mb-8">
-            <img
-              src={productBundle}
-              alt="OzenFit Caps - Integratore per dimagrire"
-              className="w-56 md:w-80 float-animation"
-            />
-          </div>
+          <div className={`transition-all duration-700 ${contentVisible ? "opacity-100" : "opacity-0 max-h-0 overflow-hidden"}`}>
+            <div className="flex justify-center mb-8">
+              <img
+                src={productBundle}
+                alt="OzenFit Caps - Integratore per dimagrire"
+                className="w-56 md:w-80 float-animation"
+              />
+            </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto mb-8 text-left">
-            {[
-              { icon: Flame, text: "Brucia calorie senza esercizi costanti" },
-              { icon: Utensils, text: "Riduce la voglia di mangiare e aumenta la sazietà" },
-              { icon: Zap, text: "Migliora il funzionamento dell'intestino" },
-              { icon: ShieldCheck, text: "100% naturale, senza effetti collaterali" },
-            ].map((item, i) => (
-              <div key={i} className="flex items-center gap-3">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-success-light flex items-center justify-center">
-                  <item.icon className="w-5 h-5 text-primary" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto mb-8 text-left">
+              {[
+                { icon: Flame, text: "Brucia calorie senza esercizi costanti" },
+                { icon: Utensils, text: "Riduce la voglia di mangiare e aumenta la sazietà" },
+                { icon: Zap, text: "Migliora il funzionamento dell'intestino" },
+                { icon: ShieldCheck, text: "100% naturale, senza effetti collaterali" },
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-3">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-success-light flex items-center justify-center">
+                    <item.icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <span className="text-sm font-semibold text-foreground">{item.text}</span>
                 </div>
-                <span className="text-sm font-semibold text-foreground">{item.text}</span>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
-          <p className="font-heading text-lg md:text-xl font-bold text-foreground mb-6">
-            SENZA DIETE ESTREME O ESERCIZI FISICI
-          </p>
+          <div className={`transition-all duration-700 ${contentVisible ? "opacity-100" : "opacity-0 max-h-0 overflow-hidden"}`}>
+            <p className="font-heading text-lg md:text-xl font-bold text-foreground mb-6">
+              SENZA DIETE ESTREME O ESERCIZI FISICI
+            </p>
 
-          <a href="#prezzo" className="btn-cta pulse-animation text-base md:text-lg">
-            VOGLIO PROVARLO! 🔥
-          </a>
-          <p className="mt-3 text-sm font-semibold text-muted-foreground flex items-center justify-center gap-1.5">
-            💳 Pagamento sicuro online!
-          </p>
+            <a href="#prezzo" className="btn-cta pulse-animation text-base md:text-lg">
+              VOGLIO PROVARLO! 🔥
+            </a>
+            <p className="mt-3 text-sm font-semibold text-muted-foreground flex items-center justify-center gap-1.5">
+              💳 Pagamento sicuro online!
+            </p>
+          </div>
         </div>
       </section>
     </>
