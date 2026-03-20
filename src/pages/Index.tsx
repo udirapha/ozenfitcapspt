@@ -24,7 +24,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <HeroSection />
+      <HeroSection contentVisible={visible} />
       <div className={`transition-all duration-700 ${visible ? "opacity-100" : "opacity-0 max-h-0 overflow-hidden"}`}>
         <BenefitsSection />
         <PromiseSection />

@@ -97,16 +97,18 @@ const HeroSectionCheckout = ({ contentVisible = true }: { contentVisible?: boole
             </div>
           </div>
 
-          <p className="font-heading text-lg md:text-xl font-bold text-foreground mb-6">
-            SENZA DIETE ESTREME O ESERCIZI FISICI
-          </p>
+          <div className={`transition-all duration-700 ${contentVisible ? "opacity-100" : "opacity-0 max-h-0 overflow-hidden"}`}>
+            <p className="font-heading text-lg md:text-xl font-bold text-foreground mb-6">
+              SENZA DIETE ESTREME O ESERCIZI FISICI
+            </p>
 
-          <a href="#prezzo" className="btn-cta pulse-animation text-base md:text-lg">
-            VOGLIO PROVARLO! 🔥
-          </a>
-          <p className="mt-3 text-sm font-semibold text-muted-foreground flex items-center justify-center gap-1.5">
-            💳 Pagamento sicuro online!
-          </p>
+            <a href="#prezzo" className="btn-cta pulse-animation text-base md:text-lg">
+              VOGLIO PROVARLO! 🔥
+            </a>
+            <p className="mt-3 text-sm font-semibold text-muted-foreground flex items-center justify-center gap-1.5">
+              💳 Pagamento sicuro online!
+            </p>
+          </div>
         </div>
       </section>
     </>
