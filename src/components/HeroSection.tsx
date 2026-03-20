@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import productBundle from "@/assets/product-bundle.webp";
 import logo from "@/assets/logo-ozenfit.png";
 
-const HeroSection = () => {
+const HeroSection = ({ contentVisible = true }: { contentVisible?: boolean }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
