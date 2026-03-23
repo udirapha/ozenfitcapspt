@@ -66,6 +66,11 @@ const CODForm = () => {
         return;
       }
 
+      // Taboola conversion tracking
+      if (typeof window !== 'undefined' && (window as any)._tfa) {
+        (window as any)._tfa.push({notify: 'event', name: 'make_purchase', id: 2014258});
+      }
+
       toast.success(
         `Ordine #${data.orderNumber} ricevuto con successo! Ti contatteremo a breve.`
       );
