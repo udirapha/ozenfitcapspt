@@ -255,7 +255,7 @@ const Advertorial = () => {
             Vuoi saperne di più?
           </h2>
           <p className="text-gray-600 leading-relaxed mb-6 max-w-md mx-auto text-[15px]">
-            Guarda questo breve video per saperne di più su questo approccio e capire se può fare al caso tuo.
+            Guarda questo breve video per saperne di più su questo approccio naturale al benessere.
           </p>
           <Link
             to="/it-cod"
