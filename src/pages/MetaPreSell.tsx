@@ -1,5 +1,6 @@
 import { Shield, Lock, Play } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import logo from "@/assets/logo-ozenfit.png";
 
 const MetaPreSell = () => {
   const navigate = useNavigate();
@@ -19,10 +20,11 @@ const MetaPreSell = () => {
         {/* Divider */}
         <div className="w-16 h-0.5 bg-primary/20 mx-auto" />
 
-        {/* Logo / Brand */}
-        <h1 className="text-3xl font-bold font-heading text-foreground tracking-tight">
-          OzenFit
-        </h1>
+        {/* Logo */}
+        <div className="flex justify-center">
+          <img src={logo} alt="OzenFit Caps" className="w-48 md:w-64 h-auto" />
+        </div>
+        
 
         {/* Subtitle */}
         <p className="text-muted-foreground text-base leading-relaxed max-w-xs mx-auto">
