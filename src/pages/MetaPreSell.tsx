@@ -24,7 +24,7 @@ const MetaPreSell = () => {
         <div className="flex justify-center">
           <img src={logo} alt="OzenFit Caps" className="w-48 md:w-64 h-auto" />
         </div>
-        </h1>
+        
 
         {/* Subtitle */}
         <p className="text-muted-foreground text-base leading-relaxed max-w-xs mx-auto">
