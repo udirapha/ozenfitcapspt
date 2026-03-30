@@ -7,6 +7,7 @@ import Index from "./pages/Index.tsx";
 import Checkout from "./pages/Checkout.tsx";
 import Advertorial from "./pages/Advertorial.tsx";
 import MetaPreSell from "./pages/MetaPreSell.tsx";
+import Combined from "./pages/Combined.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
