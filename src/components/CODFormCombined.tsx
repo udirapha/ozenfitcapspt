@@ -3,9 +3,9 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 
 const PACKAGES = [
-  { value: "5meses", label: "⭐ 5 Mesi — €100,00 (Spedizione gratuita)", price: "100,00" },
-  { value: "3meses", label: "3 Mesi — €75,00 (Spedizione gratuita)", price: "75,00" },
-  { value: "1mes", label: "1 Mese — €34,00 (+ €4,99 spedizione)", price: "34,00" },
+  { value: "5meses", label: "⭐ 5 Mesi — €119,90 (Spedizione gratuita)", price: "119,90" },
+  { value: "3meses", label: "3 Mesi — €89,90 (Spedizione gratuita)", price: "89,90" },
+  { value: "1mes", label: "1 Mese — €39,90 (Spedizione gratuita)", price: "39,90" },
 ];
 
 const COUNTRY_CODES = [
