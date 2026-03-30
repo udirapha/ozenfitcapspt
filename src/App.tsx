@@ -7,6 +7,7 @@ import Index from "./pages/Index.tsx";
 import Checkout from "./pages/Checkout.tsx";
 import Advertorial from "./pages/Advertorial.tsx";
 import MetaPreSell from "./pages/MetaPreSell.tsx";
+import Combined from "./pages/Combined.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/it-pag" element={<Checkout />} />
           <Route path="/it-art" element={<Advertorial />} />
           <Route path="/it-meta" element={<MetaPreSell />} />
+          <Route path="/it-all" element={<Combined />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
